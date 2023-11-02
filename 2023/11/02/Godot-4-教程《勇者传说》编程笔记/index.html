@@ -16,20 +16,22 @@
   <meta name="author" content="BreezeLee">
   <meta name="keywords" content="">
   
-    <meta name="description" content="教程视频链接：合集·《勇者传说》Godot 4教程 整理笔记的目的，主要是自己发觉跟着教程做一遍游戏 demo，并不能很好地掌握一些技术细节和设计流程，所以重新浏览一遍教程，并将比较重要的编程内容整理成笔记。 （注：部分笔记参考了瓦格良等人的博客&#x2F;专栏） 00: 基础项目0.1 修改窗口大小和拉伸模式【操作】设置「窗口覆盖大小」为默认的视口大小（1152 * 648），「视口大小」设置为">
+    <meta name="description" content=".center {   width: auto;   display: table;   margin-left: auto;   margin-right: auto; }   教程视频链接：合集·《勇者传说》Godot 4教程 整理笔记的目的，主要是自己发觉跟着教程做一遍游戏 demo，并不能很好地掌握一些技术细节和设计流程，所以重新浏览一遍教程，并将比较重要的编程内容整理成笔记。 （注：部">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Godot 4 教程《勇者传说》编程笔记">
 <meta property="og:url" content="http://kazelee.github.io/2023/11/02/Godot-4-%E6%95%99%E7%A8%8B%E3%80%8A%E5%8B%87%E8%80%85%E4%BC%A0%E8%AF%B4%E3%80%8B%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="教程视频链接：合集·《勇者传说》Godot 4教程 整理笔记的目的，主要是自己发觉跟着教程做一遍游戏 demo，并不能很好地掌握一些技术细节和设计流程，所以重新浏览一遍教程，并将比较重要的编程内容整理成笔记。 （注：部分笔记参考了瓦格良等人的博客&#x2F;专栏） 00: 基础项目0.1 修改窗口大小和拉伸模式【操作】设置「窗口覆盖大小」为默认的视口大小（1152 * 648），「视口大小」设置为">
+<meta property="og:description" content=".center {   width: auto;   display: table;   margin-left: auto;   margin-right: auto; }   教程视频链接：合集·《勇者传说》Godot 4教程 整理笔记的目的，主要是自己发觉跟着教程做一遍游戏 demo，并不能很好地掌握一些技术细节和设计流程，所以重新浏览一遍教程，并将比较重要的编程内容整理成笔记。 （注：部">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://kazelee.github.io/img/cover/2023-11-02.jpg">
 <meta property="article:published_time" content="2023-11-02T01:28:07.000Z">
-<meta property="article:modified_time" content="2023-11-02T02:55:15.507Z">
+<meta property="article:modified_time" content="2023-11-02T16:03:02.363Z">
 <meta property="article:author" content="BreezeLee">
 <meta property="article:tag" content="Godot">
 <meta property="article:tag" content="程序">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://kazelee.github.io/img/cover/2023-11-02.jpg">
   
   
   
@@ -222,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.3k 字
+          13k 字
         
       </span>
     
@@ -233,7 +235,7 @@
         
         
         
-          28 分钟
+          110 分钟
         
       </span>
     
@@ -276,55 +278,267 @@
             
               <div class="markdown-body">
                 
-                <p>教程视频链接：<a target="_blank" rel="noopener" href="https://space.bilibili.com/7092/channel/collectiondetail?sid=1304862">合集·《勇者传说》Godot 4教程</a></p>
-<p>整理笔记的目的，主要是自己发觉跟着教程做一遍游戏 demo，并不能很好地掌握一些技术细节和设计流程，所以重新浏览一遍教程，并将比较重要的编程内容整理成笔记。</p>
-<p>（注：部分笔记参考了<a target="_blank" rel="noopener" href="https://space.bilibili.com/3863194/article">瓦格良</a>等人的博客&#x2F;专栏）</p>
-<h2 id="00-基础项目"><a href="#00-基础项目" class="headerlink" title="00: 基础项目"></a>00: 基础项目</h2><h3 id="0-1-修改窗口大小和拉伸模式"><a href="#0-1-修改窗口大小和拉伸模式" class="headerlink" title="0.1 修改窗口大小和拉伸模式"></a>0.1 修改窗口大小和拉伸模式</h3><p>【操作】设置「窗口覆盖大小」为默认的视口大小（1152 * 648），<strong>「视口大小」设置为窗口覆盖大小的 1&#x2F;3</strong>；将拉伸模式修改为 canvas_items</p>
-<p>【解释】像素风格游戏，如果不修改视口大小为实际窗口覆盖大小的比例，会导致实际的游戏窗口中的一个像素，与游戏素材的中的一个像素对应（这样就会导致画面中的物体变得很小，而我们希望的是“像素风格”，素材的像素点应该明显）</p>
-<p>【补充】canvas_items 会修改游戏的拉伸模式为“成比例放大”，如果保持默认的 disabled，拉伸后就不会放大，而且会用灰色部分填充</p>
-<h3 id="0-2-TileMap-的设置"><a href="#0-2-TileMap-的设置" class="headerlink" title="0.2 TileMap 的设置"></a>0.2 TileMap 的设置</h3><p>【步骤】新建 tilemap 节点 - 新建 tileset - 拖入图片素材（取消自动创建图块弹窗）；设置物理层0（碰撞）</p>
-<ul>
-<li>快捷键：按住 shift 拖出一条直线</li>
-</ul>
-<p>（Tilemap 内容详见 02 TileMap 的视频部分）</p>
-<h3 id="0-3-玩家场景"><a href="#0-3-玩家场景" class="headerlink" title="0.3 玩家场景"></a>0.3 玩家场景</h3><p>【步骤】sprite2d、collision、animation（关键帧包括：region_rect, hframes, frame）</p>
-<p>【原因】<strong>只选用素材的一部分，所以需要将 region_rect 加入关键帧（因为要获取选中的区域）</strong>；水平框选动画素材（系统不知道实际的帧数），所以需要将 hframe 加入关键帧（如应用不同的素材文件，还需要将素材也加入关键帧）</p>
-<p>【补充】素材导入的时候需要提前设置「栅格吸附」和「步长」</p>
-<h3 id="0-4-玩家脚本"><a href="#0-4-玩家脚本" class="headerlink" title="0.4 玩家脚本"></a>0.4 玩家脚本</h3><p>【步骤】编写脚本、设置输入映射、实例化子场景</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs python">extends CharacterBody2D<br><span class="hljs-meta">@onready var animation_player: AnimationPlayer = $AnimationPlayer</span><br><span class="hljs-meta">@onready var sprite_2d: Sprite2D = $Sprite2D</span><br><br>const RUN_SPEED := <span class="hljs-number">200.0</span><br><span class="hljs-comment"># 是负数的原因是因为在2D空间中y轴向上为负</span><br>const JUMP_VELOCITY := -<span class="hljs-number">300.0</span><br><span class="hljs-comment"># 获取引擎给的重力加速度</span><br>var gravty := ProjectSettings.get(<span class="hljs-string">&quot;physics/2d/default_gravity&quot;</span>) <span class="hljs-keyword">as</span> <span class="hljs-built_in">float</span><br><br><br><span class="hljs-comment"># 每个物理帧调用一次</span><br>func _physics_process(delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	<span class="hljs-comment"># 获取按键输入</span><br>	var direction :=  Input.get_axis(<span class="hljs-string">&quot;move_left&quot;</span>,<span class="hljs-string">&quot;move_right&quot;</span>)<br>	<span class="hljs-comment"># 修改速度向量</span><br>	velocity.x = direction * RUN_SPEED<br>	velocity.y += gravty * delta<br>	<br>	<span class="hljs-comment"># 如果在地板上并且按下了jump键，那么就修改角色y坐标变为跳跃值</span><br>	<span class="hljs-keyword">if</span> is_on_floor() <span class="hljs-keyword">and</span> Input.is_action_just_pressed(<span class="hljs-string">&quot;jump&quot;</span>):<br>		velocity.y = JUMP_VELOCITY<br>	<br>	<span class="hljs-comment"># 如果在地板上，没有移动则播放idle动画，有移动则播放running动画，如果不在地板上则播放jump动画</span><br>	<span class="hljs-keyword">if</span> is_on_floor():<br>		<span class="hljs-keyword">if</span> is_zero_approx(direction):<br>			animation_player.play(<span class="hljs-string">&quot;idle&quot;</span>)<br>		<span class="hljs-keyword">else</span>:<br>			animation_player.play(<span class="hljs-string">&quot;running&quot;</span>)<br>	<span class="hljs-keyword">else</span>:<br>		animation_player.play(<span class="hljs-string">&quot;jump&quot;</span>)<br>	<br>	<span class="hljs-comment"># 如果在移动，并且是向左移动，那么将角色水平翻转</span><br>	<span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> is_zero_approx(direction):<br>		sprite_2d.flip_h = direction &lt; <span class="hljs-number">0</span><br>	move_and_slide()<br></code></pre></td></tr></table></figure>
+                <style>
+.center {
+  width: auto;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
 
-<p>【补充】<code>is_zero_approx</code> 表示与 0 的距离小于内置的判定区间，用于浮点数等于 0 的检测</p>
+<p>教程视频链接：<a target="_blank" rel="noopener" href="https://space.bilibili.com/7092/channel/collectiondetail?sid=1304862">合集·《勇者传说》Godot 4教程</a></p>
+<p>整理笔记的目的，主要是自己发觉跟着教程做一遍游戏 demo，并不能很好地掌握一些技术细节和设计流程，所以重新浏览一遍教程，并将比较重要的编程内容整理成笔记。</p>
+<p>（注：部分笔记参考了<a target="_blank" rel="noopener" href="https://space.bilibili.com/3863194/article">瓦格良</a>等其他网友的评论和总结）</p>
+<h2 id="00-基础项目"><a href="#00-基础项目" class="headerlink" title="00: 基础项目"></a>00: 基础项目</h2><h3 id="0-1-修改窗口大小和拉伸模式"><a href="#0-1-修改窗口大小和拉伸模式" class="headerlink" title="0.1 修改窗口大小和拉伸模式"></a>0.1 修改窗口大小和拉伸模式</h3><ol>
+<li>设置「视口大小」为<strong>「窗口覆盖大小」的 1&#x2F;3</strong>（把游戏放大 3 倍显示，像素风游戏常用）</li>
+<li>修改拉伸模式为 canvas_items（拉伸窗口后，画面会跟着放大）</li>
+<li>项目-项目设置-渲染-纹理-默认纹理过滤：Nearest（保留纹理像素风格，不做线性滤波）</li>
+</ol>
+<h3 id="0-2-TileMap-的设置"><a href="#0-2-TileMap-的设置" class="headerlink" title="0.2 TileMap 的设置"></a>0.2 TileMap 的设置</h3><ol>
+<li>新建 tilemap 节点 - 新建 tileset - 拖入图片素材（取消自动创建图块弹窗）</li>
+<li>设置物理层 0（碰撞）</li>
+</ol>
+<p>【快捷键】按住 shift 拖出一条直线</p>
+<h3 id="0-3-玩家场景"><a href="#0-3-玩家场景" class="headerlink" title="0.3 玩家场景"></a>0.3 玩家场景</h3><p>【步骤】sprite2d, collision_shape2d, animation_player（关键帧包括：region_rect, hframes, frame）</p>
+<p>补充说明：</p>
+<ol>
+<li>素材导入的时候需要提前设置「栅格吸附」和「步长」，方便框选所需的部分</li>
+<li><strong>只选用素材的一部分，所以需要将 region_rect 加入关键帧（因为要获取选中的区域）</strong></li>
+<li>水平框选动画素材（系统不知道实际的帧数），所以需要将 hframe 加入关键帧</li>
+<li>如使用不同的素材文件，还需要将素材也加入关键帧</li>
+</ol>
+<h3 id="0-4-玩家脚本"><a href="#0-4-玩家脚本" class="headerlink" title="0.4 玩家脚本"></a>0.4 玩家脚本</h3><p>【步骤】编写脚本、设置输入映射、实例化子场景</p>
+<p>代码补充说明：</p>
+<ol>
+<li><code>Input.get_axis</code> 根据玩家的输入方向，返回 (-1, 0, 1)</li>
+<li><code>is_zero_approx</code> 表示与 0 的距离小于内置的判定区间，用于浮点数等于 0 的检测</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs python">extends CharacterBody2D<br><span class="hljs-meta">@onready var animation_player: AnimationPlayer = $AnimationPlayer</span><br><span class="hljs-meta">@onready var sprite_2d: Sprite2D = $Sprite2D</span><br><br>const RUN_SPEED := <span class="hljs-number">200.0</span><br><span class="hljs-comment"># 是负数的原因是因为在2D空间中y轴向上为负</span><br>const JUMP_VELOCITY := -<span class="hljs-number">300.0</span><br><span class="hljs-comment"># 获取引擎给的重力加速度</span><br>var gravty := ProjectSettings.get(<span class="hljs-string">&quot;physics/2d/default_gravity&quot;</span>) <span class="hljs-keyword">as</span> <span class="hljs-built_in">float</span><br><br><span class="hljs-comment"># 每个物理帧调用一次</span><br>func _physics_process(delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	<span class="hljs-comment"># 获取按键输入</span><br>	var direction :=  Input.get_axis(<span class="hljs-string">&quot;move_left&quot;</span>,<span class="hljs-string">&quot;move_right&quot;</span>)<br>	<span class="hljs-comment"># 修改速度向量</span><br>	velocity.x = direction * RUN_SPEED<br>	velocity.y += gravty * delta<br><br>	<span class="hljs-comment"># 如果在地板上并且按下了jump键，那么就修改角色y坐标变为跳跃值</span><br>	<span class="hljs-keyword">if</span> is_on_floor() <span class="hljs-keyword">and</span> Input.is_action_just_pressed(<span class="hljs-string">&quot;jump&quot;</span>):<br>		velocity.y = JUMP_VELOCITY<br><br>	<span class="hljs-comment"># 如果在地板上，没有移动则播放idle动画，有移动则播放running动画，如果不在地板上则播放jump动画</span><br>	<span class="hljs-keyword">if</span> is_on_floor():<br>		<span class="hljs-keyword">if</span> is_zero_approx(direction):<br>			animation_player.play(<span class="hljs-string">&quot;idle&quot;</span>)<br>		<span class="hljs-keyword">else</span>:<br>			animation_player.play(<span class="hljs-string">&quot;running&quot;</span>)<br>	<span class="hljs-keyword">else</span>:<br>		animation_player.play(<span class="hljs-string">&quot;jump&quot;</span>)<br><br>	<span class="hljs-comment"># 如果在移动，并且是向左移动，那么将角色水平翻转</span><br>	<span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> is_zero_approx(direction):<br>		sprite_2d.flip_h = direction &lt; <span class="hljs-number">0</span><br>	move_and_slide()<br></code></pre></td></tr></table></figure>
+
 <h2 id="01-相机"><a href="#01-相机" class="headerlink" title="01: 相机"></a>01: 相机</h2><h3 id="1-0-编辑器设置"><a href="#1-0-编辑器设置" class="headerlink" title="1.0 编辑器设置"></a>1.0 编辑器设置</h3><p>将脚本编辑器中的「补全」，设置为「添加类型提示」：可以提高编辑器性能和编写的流畅</p>
-<h3 id="1-1-TileMap-快捷键"><a href="#1-1-TileMap-快捷键" class="headerlink" title="1.1 TileMap 快捷键"></a>1.1 TileMap 快捷键</h3><ol>
-<li>ctrl + 左键点击 吸取单个图块</li>
-<li>ctrl + 按住左键拖动 吸取多个图块</li>
-<li>ctrl + shift + 按住左键拖动 绘制矩形区域</li>
+<h3 id="1-1-TileMap-快捷键补充"><a href="#1-1-TileMap-快捷键补充" class="headerlink" title="1.1 TileMap 快捷键补充"></a>1.1 TileMap 快捷键补充</h3><ol>
+<li>ctrl + 左键点击：吸取单个图块</li>
+<li>ctrl + 按住左键拖动：吸取多个图块</li>
+<li>ctrl + shift + 按住左键拖动：绘制矩形区域</li>
 <li>右键删除图块</li>
 </ol>
-<h3 id="1-2-相机位置"><a href="#1-2-相机位置" class="headerlink" title="1.2 相机位置"></a>1.2 相机位置</h3><p>【步骤】在 player 节点下新建相机节点（这一步不是在 player 场景下设置的，而是在 world 场景下设置的）</p>
-<p>【心得】安排节点的时候，要妥善确定位置：相机节点是实际游戏的 world 场景需要考虑的，player 自己不需要考虑，所以应该在world中设置（其实就是“怎么方便怎么来”，在一个场景修改再在另一个场景查看是不合适的）</p>
-<p>【补充】拖动相机时，按住 ctrl 键可以更好的定位（位置辅助线提示）</p>
-<h3 id="1-3-相机跟随效果"><a href="#1-3-相机跟随效果" class="headerlink" title="1.3 相机跟随效果"></a>1.3 相机跟随效果</h3><p>游戏中相机并不总是跟随玩家，玩家在屏幕中心附近有一定的自由活动空间</p>
+<h3 id="1-2-相机位置"><a href="#1-2-相机位置" class="headerlink" title="1.2 相机位置"></a>1.2 相机位置</h3><p>【步骤】在 player 节点下新建相机节点（这一步不在 player 场景下设置，<strong>而在 world 场景下的 player 中设置</strong>）</p>
+<p>补充说明：</p>
 <ol>
-<li>在 Camera2D 节点的 Drag 属性勾选 Horizontal Enable和 Vertical Enable （水平和垂直方向上的相机拖动功能）</li>
+<li>拖动相机时，按住 ctrl 键可以更好的定位（十字辅助线提示）</li>
+<li>实际上可以将相机定位在 player 场景中，但这样就很难方便的通过 world 场景下的 tilemap 来控制相机位置；同时也不能很好地预览相机视角下，角色在 world 场景下的画面</li>
+</ol>
+<h3 id="1-3-相机跟随效果"><a href="#1-3-相机跟随效果" class="headerlink" title="1.3 相机跟随效果"></a>1.3 相机跟随效果</h3><p>游戏中相机并不总是跟随玩家，玩家在屏幕中心附近有一定的自由活动空间（即玩家走动一段距离后再移动相机）</p>
+<ol>
+<li>在 Camera2D 节点的 Drag 属性勾选 Horizontal Enable 和 Vertical Enable （水平和垂直方向上的相机拖动功能）</li>
 <li>在 Camera2D 节点的 Editor 属性勾选 Draw Drag Margin，可以观察到可自由活动的范围，通过调整 Drag 属性的 Left Margin 等，可以控制其大小，值是 0 至 1 的比例</li>
+<li>实现相机平滑移动：勾选 Camera2D 节点的 Position Smoothing 下的 Enabled（其中 Speed 可调整相机的平滑移动速度）</li>
 </ol>
-<p>实现相机平滑移动，勾选 Camera2D 节点的 Position Smoothing 下的 Enabled</p>
-<ol>
-<li>其中 Speed 可调整相机的平滑移动速度</li>
+<h3 id="1-4-限制相机的拍摄范围"><a href="#1-4-限制相机的拍摄范围" class="headerlink" title="1.4 限制相机的拍摄范围"></a>1.4 限制相机的拍摄范围</h3><ol>
+<li>可以利用标尺确定位置，然后在相机节点的 Limit 中设置（比较麻烦）</li>
+<li>或者使用脚本进行修改（借助 TileMap 的 size；需要使用 reset_smoothing 结束“出界过渡”的动画）</li>
 </ol>
-<h3 id="1-4-限制相机的拍摄范围"><a href="#1-4-限制相机的拍摄范围" class="headerlink" title="1.4 限制相机的拍摄范围"></a>1.4 限制相机的拍摄范围</h3><p>可以利用标尺确定位置，然后在相机节点的 Limit 中设置（比较麻烦）</p>
-<p>使用脚本进行修改（借助 TileMap 的 size；需要使用 reset_smoothing 结束“出界过渡”的动画）</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python">extends Node2D<br><span class="hljs-meta">@onready var tile_map: TileMap = $TileMap</span><br><span class="hljs-meta">@onready var camera_2d: Camera2D = $Player/Camera2D</span><br><br><br>func _ready() -&gt; void:<br>	<span class="hljs-comment"># 获取瓦片地图的范围</span><br>	var used := tile_map.get_used_rect()<br>	<span class="hljs-comment"># 获取单个图块的尺寸</span><br>	var tile_size:=tile_map.tile_set.tile_size<br>	<span class="hljs-comment"># 为相机的上下左右添加限制</span><br>	camera_2d.limit_top= used.position.y * tile_size.y<br>	camera_2d.limit_right= used.end.x * tile_size.x<br>	camera_2d.limit_bottom= used.end.y * tile_size.y<br>	camera_2d.limit_left= used.position.x * tile_size.x<br>	<span class="hljs-comment"># 将相机的位置立即设置为其当前平滑的目标位置。</span><br>	camera_2d.reset_smoothing()<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python">extends Node2D<br><span class="hljs-meta">@onready var tile_map: TileMap = $TileMap</span><br><span class="hljs-meta">@onready var camera_2d: Camera2D = $Player/Camera2D</span><br><br>func _ready() -&gt; void:<br>	<span class="hljs-comment"># 获取瓦片地图的范围</span><br>	var used := tile_map.get_used_rect()<br>	<span class="hljs-comment"># 获取单个图块的尺寸</span><br>	var tile_size:=tile_map.tile_set.tile_size<br>	<span class="hljs-comment"># 为相机的上下左右添加限制</span><br>	camera_2d.limit_top= used.position.y * tile_size.y<br>	camera_2d.limit_right= used.end.x * tile_size.x<br>	camera_2d.limit_bottom= used.end.y * tile_size.y<br>	camera_2d.limit_left= used.position.x * tile_size.x<br>	<span class="hljs-comment"># 将相机的位置立即设置为其当前平滑的目标位置。</span><br>	camera_2d.reset_smoothing()<br></code></pre></td></tr></table></figure>
 
-<h2 id="02-TileMap"><a href="#02-TileMap" class="headerlink" title="02 TileMap"></a>02 TileMap</h2><p>关于 TileMap 的场景不止的内容，不涉及代码和节点，这部分暂且略过</p>
+<h2 id="02-TileMap"><a href="#02-TileMap" class="headerlink" title="02 TileMap"></a>02 TileMap</h2><ul>
+<li>TileSet<ul>
+<li>选择需要的纹理块</li>
+<li>对每个纹理块微调（拉伸长宽，更改纹理原点）</li>
+<li>绘制：包括地形、生成概率、物理层（碰撞箱）<ul>
+<li>可以利用绘制功能，批量更改纹理原点等属性</li>
+<li>🎲散布：类似绘制的概率，将选定的图案按照 n:1:1:… 的概率绘制，n 为空白</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Terrain地形<ul>
+<li>模式：match corners（根据角落匹配中心和角落邻接点）</li>
+<li>直接涂会出现渲染错误（再涂一遍就好了），建议使用 Ctrl + Shift + 左右键</li>
+</ul>
+</li>
+<li>TileMap<ul>
+<li>图层功能（图层的顺序是从后向前，越往后的图层越近）</li>
+</ul>
+</li>
+</ul>
 <p>参考笔记：<a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv23978148/?jump_opus=1">如何使用 TileMap｜Godot 4 教程《勇者传说》#2 - 哔哩哔哩 (bilibili.com)</a></p>
-<p>补充：对 1.4 中代码的修改</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># grow(-1) 为什么要向内缩小一格？ 隐藏最外层的边界，给人一种「地图很大」的感觉。</span><br>var used := tile_map.get_used_rect().grow(-<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+<p>补充：对 1.4 中代码的修改（将 <code>grow()</code> 更改为 <code>grow(-1)</code>）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">...<br>func _ready() -&gt; void:<br><span class="hljs-comment">#	var used := tile_map.get_used_rect()</span><br>	<span class="hljs-comment"># grow(-1) 为什么要向内缩小一格？ 隐藏最外层的边界，给人一种「地图很大」的感觉。</span><br>	var used := tile_map.get_used_rect().grow(-<span class="hljs-number">1</span>)<br>    ...<br></code></pre></td></tr></table></figure>
 
-<h2 id="03-视差背景"><a href="#03-视差背景" class="headerlink" title="03 视差背景"></a>03 视差背景</h2><p>这部分同样不涉及代码和节点，且该功能也没有那么普适，暂时略过（需要时参考视频和笔记）</p>
+<h2 id="03-视差背景"><a href="#03-视差背景" class="headerlink" title="03 视差背景"></a>03 视差背景</h2><p>提升画面质感的技巧（背景移动速度不同）</p>
+<ul>
+<li>ParallaxBackground&#x2F;ParallaxLayer<ul>
+<li>直接拖动素材会放到根节点，按住 ctrl 键后拖动会移动到「当前选中节点的子节点」</li>
+<li>将素材移动到原点：取消 offset 的 centered，将 transform 的 position 重置</li>
+<li>原则：scale 越小，背景越远；scale 越大，背景越近；1 是标准的距离</li>
+<li>mirroring：镜像，输入图片的长宽，复制一遍相当于无数遍（自动重复）</li>
+</ul>
+</li>
+<li>边运行边修改，可以设置项目-项目设置-显示-窗口-置顶打开</li>
+<li>bug：画面会出现竖线缝隙（Godot 4.1 已经修复了这个 bug）<ul>
+<li>解决 1：更改设置：项目-常规-渲染-2D-吸附启用（但会像素抖动）</li>
+<li>解决 2：将纹理单独切出来保存</li>
+</ul>
+</li>
+</ul>
+<p>【建议】将前后景都选中，作为新 node2d 节点的子节点，编组加锁（平常不需要选中）</p>
 <p>参考笔记：<a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv24333389/?jump_opus=1">如何实现视差背景｜Godot 4 教程《勇者传说》#3 - 哔哩哔哩 (bilibili.com)</a></p>
-<h2 id="04-运动控制"><a href="#04-运动控制" class="headerlink" title="04 运动控制"></a>04 运动控制</h2>
+<h2 id="04-运动控制"><a href="#04-运动控制" class="headerlink" title="04 运动控制"></a>04 运动控制</h2><h3 id="4-1-加速度"><a href="#4-1-加速度" class="headerlink" title="4.1 加速度"></a>4.1 加速度</h3><p>对 0.4 中代码的修改：使用 move_toward 函数实现加速运动效果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">...<br>const ACCELERATION := RUN_SPEED / <span class="hljs-number">0.2</span><br><br>func _physics_process(delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	...<br><span class="hljs-comment">#	velocity.x = direction * RUN_SPEED</span><br>	<span class="hljs-comment"># 加速度，从A到B步进C：从v到vmax步进a*dt</span><br>	velocity.x = move_toward(velocity.x, direction * RUN_SPEED, ACCELERATION * delta)<br>	...<br></code></pre></td></tr></table></figure>
+
+<p>问题：玩家停止 input 后还会“漂移”一段距离（原因：没有同步更改动画播放的逻辑）</p>
+<p>解决：调整动画播放的逻辑（输入 direction 为 0，且速度也为 0）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python">...<br>func _physics_process(delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>    ...<br>    <span class="hljs-keyword">if</span> is_on_floor():<br><span class="hljs-comment">#		if is_zero_approx(direction):</span><br>        <span class="hljs-comment"># 输入方向和当前速度均为0的时候，才播放站立动画</span><br>        <span class="hljs-keyword">if</span> is_zero_approx(direction) <span class="hljs-keyword">and</span> is_zero_approx(velocity.x):<br>        	animation_player.play(<span class="hljs-string">&quot;idle&quot;</span>)<br>        <span class="hljs-keyword">else</span>:<br>        	animation_player.play(<span class="hljs-string">&quot;running&quot;</span>)<br>    ...<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-2-区分空中-x2F-地面加速度"><a href="#4-2-区分空中-x2F-地面加速度" class="headerlink" title="4.2 区分空中&#x2F;地面加速度"></a>4.2 区分空中&#x2F;地面加速度</h3><p>玩家直觉：空中很灵活，地上很迟缓（地面上逆转方向需一定时间，空中反跳可以很快反应）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python">...<br><span class="hljs-comment">#const ACCELERATION := RUN_SPEED / 0.2</span><br><span class="hljs-comment"># 空中转身更加容易，所以加速度更大</span><br>const FLOOR_ACCELERATION := RUN_SPEED / <span class="hljs-number">0.2</span><br>const AIR_ACCELERATION := RUN_SPEED / <span class="hljs-number">0.1</span><br>...<br><br>func _physics_process(delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	...<br>    <span class="hljs-comment"># 在地面上：地面加速度；否则：空中加速度</span><br>	var acceleration := FLOOR_ACCELERATION <span class="hljs-keyword">if</span> is_on_floor() <span class="hljs-keyword">else</span> AIR_ACCELERATION<br><span class="hljs-comment">#	velocity.x = move_toward(velocity.x, direction * RUN_SPEED, ACCELERATION * delta)</span><br>	velocity.x = move_toward(velocity.x, direction * RUN_SPEED, acceleration * delta)<br>	...<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-3-郊狼时间（CoyoteTimer）"><a href="#4-3-郊狼时间（CoyoteTimer）" class="headerlink" title="4.3 郊狼时间（CoyoteTimer）"></a>4.3 郊狼时间（CoyoteTimer）</h3><blockquote>
+<p>前面的优化是把游戏“往真实了做”，从而提升手感；接下来的优化是把游戏“往不真实了做”，从而提升手感。</p>
+</blockquote>
+<p>Timer 节点设置时间为 0.1s，OneShot（一次性）</p>
+<p>【注意】计时器如果要实现 timeout 后就停止，<strong>必须设置 one shot</strong>，否则停止后就会立即重新开始！</p>
+<p>【条件】必须离开地面，而且<strong>不是「因为跳跃」离开的地面</strong>（必须是「走出地面」的一瞬间）</p>
+<div class="center">
+
+<table>
+<thead>
+<tr>
+<th align="center">实际条件</th>
+<th align="center">代码逻辑</th>
+<th align="center">操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">玩家走出地面</td>
+<td align="center">is_on_floor &#x3D; 0<br>was_on_floor &#x3D; 1<br>should_jump &#x3D; 0</td>
+<td align="center">开始计时</td>
+</tr>
+<tr>
+<td align="center">玩家跳离地面</td>
+<td align="center">is_on_floor &#x3D; 0<br>was_on_floor &#x3D; 1<br>should_jump &#x3D; 1</td>
+<td align="center">停止计时</td>
+</tr>
+</tbody></table>
+</div>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@onready var coyote_timer: Timer = $CoyoteTimer</span><br>...<br>func _physics_process(delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>    ...<br>    <span class="hljs-comment"># 可以跳跃的条件：在地面上，或者倒计时未结束</span><br>    var can_jump = is_on_floor() <span class="hljs-keyword">or</span> coyote_timer.time_left &gt; <span class="hljs-number">0</span><br>    <span class="hljs-comment"># 跳跃动作的触发条件：可以跳跃，且按下了跳跃键</span><br>	var should_jump = can_jump <span class="hljs-keyword">and</span> Input.is_action_just_pressed(<span class="hljs-string">&quot;jump&quot;</span>)<br><span class="hljs-comment">#	if is_on_floor() and Input.is_action_just_pressed(&quot;jump&quot;):</span><br>	<span class="hljs-keyword">if</span> should_jump:<br>		velocity.y = JUMP_VELOCITY<br>        <span class="hljs-comment"># 需要跳跃的时候，必须关掉计时器，否则就可以反复起跳了</span><br>		coyote_timer.stop()<br>    ...<br>    var was_on_floor := is_on_floor()<br>    move_and_slide()<br><br>	<span class="hljs-keyword">if</span> is_on_floor() != was_on_floor:<br>        <span class="hljs-comment"># 仅当不是跳跃导致的“离开地面”时，启动计时器</span><br>		<span class="hljs-keyword">if</span> was_on_floor <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> should_jump:<br>			coyote_timer.start()<br>		<span class="hljs-keyword">else</span>:<br>			coyote_timer.stop()<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-4-跳跃缓冲（倒计时和长短跳）"><a href="#4-4-跳跃缓冲（倒计时和长短跳）" class="headerlink" title="4.4 跳跃缓冲（倒计时和长短跳）"></a>4.4 跳跃缓冲（倒计时和长短跳）</h3><p>角色快要着陆，但还没有着陆的瞬间，按下跳跃，角色也能够起跳（预判）</p>
+<p>根据按键时长控制跳跃高度：如果刚跳跃没多久就松开跳跃键，则快速</p>
+<ul>
+<li>实现：跳跃键松开后，判断<strong>向上的速度</strong>是否还很大；如果还很大，立刻将其设置成一个较小的值，使其快速下落</li>
+<li>补充：刚跳跃没多久 &#x3D; 向上的速度还很大 &#x3D; 速度的 y 分量还很小（负值）</li>
+</ul>
+<p>参考：一个上抛运动的各时间点速度和高度的值（注：Godot 中 y 分量均为负值）</p>
+<div class="center">
+
+<table>
+<thead>
+<tr>
+<th align="center">time</th>
+<th align="center">0</th>
+<th align="center">0.25t</th>
+<th align="center">0.5t</th>
+<th align="center">0.75t</th>
+<th align="center">t</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">velocity</td>
+<td align="center">v<sub>max</sub></td>
+<td align="center">0.5v<sub>max</sub></td>
+<td align="center">0</td>
+<td align="center">-0.5v<sub>max</sub></td>
+<td align="center">-v<sub>max</sub></td>
+</tr>
+<tr>
+<td align="center">height</td>
+<td align="center">0</td>
+<td align="center">0.75h<sub>max</sub></td>
+<td align="center">h<sub>max</sub></td>
+<td align="center">0.75h<sub>max</sub></td>
+<td align="center">0</td>
+</tr>
+</tbody></table>
+</div>
+
+<p>代码补充：<code>_unhandled_input</code> 事件回调函数，用于处理未处理的跳跃指令</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@onready var jump_request_timer: Timer = $JumpRequestTimer</span><br>...<br>func _unhandled_input(event: InputEvent) -&gt; void:<br>	<span class="hljs-keyword">if</span> event.is_action_pressed(<span class="hljs-string">&quot;jump&quot;</span>):<br>        <span class="hljs-comment"># 把跳跃请求倒计时作为跳跃触发的依据</span><br>		jump_request_timer.start()<br>    <span class="hljs-comment"># 松开跳跃键后，当向上的速度还很大时，更改成一个较小的值</span><br>    <span class="hljs-comment"># 注：仅当速度向上且较大时；若速度已经很小甚至向下时，不做处理</span><br>	<span class="hljs-keyword">if</span> event.is_action_released(<span class="hljs-string">&quot;jump&quot;</span>) <span class="hljs-keyword">and</span> velocity.y &lt; JUMP_VELOCITY / <span class="hljs-number">2</span>:<br>		velocity.y = JUMP_VELOCITY / <span class="hljs-number">2</span><br><br>func _physics_process(delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>    ...<br><span class="hljs-comment">#	var should_jump = can_jump and Input.is_action_just_pressed(&quot;jump&quot;)</span><br>    <span class="hljs-comment"># 跳跃动作的触发条件更改为：可以跳跃，且倒计时未结束</span><br>	var should_jump = can_jump <span class="hljs-keyword">and</span> <span class="hljs-keyword">and</span> jump_request_timer.time_left &gt; <span class="hljs-number">0</span><br>    ...<br></code></pre></td></tr></table></figure>
+
+<p>问题：如果在落地前 0.1 秒内(<code>jump_request_timer</code> 的 <code>wait_time</code>)按下跳跃并在落地前放开，在落地瞬间应该满足跳的条件然后跳起，但由于按键已处于 release 状态，所以不触发 <code>is_action_just_released(&quot;jump&quot;)</code>，导致因为一次短按进行一个大跳</p>
+<p>解决：松开 jump 的同时，把 jump_request_timer 停掉</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">func _unhandled_input(event: InputEvent) -&gt; void:<br>	<span class="hljs-keyword">if</span> event.is_action_pressed(<span class="hljs-string">&quot;jump&quot;</span>):<br>		jump_request_timer.start()<br><span class="hljs-comment">#	if event.is_action_released(&quot;jump&quot;) and velocity.y &lt; JUMP_VELOCITY / 2:</span><br><span class="hljs-comment">#		velocity.y = JUMP_VELOCITY / 2</span><br>	<span class="hljs-keyword">if</span> event.is_action_released(<span class="hljs-string">&quot;jump&quot;</span>):<br>		jump_request_timer.stop()<br>		<span class="hljs-keyword">if</span> velocity.y &lt; JUMP_VELOCITY / <span class="hljs-number">2</span>:<br>			velocity.y = JUMP_VELOCITY / <span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="05-状态机"><a href="#05-状态机" class="headerlink" title="05 状态机"></a>05 状态机</h2><h3 id="5-0-下落动画"><a href="#5-0-下落动画" class="headerlink" title="5.0 下落动画"></a>5.0 下落动画</h3><p>播放下落动画：不使用状态机的写法（麻烦，后面会用状态机重写）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python">func _unhandled_input(event: InputEvent) -&gt; void:<br>    ...<br>    <span class="hljs-keyword">if</span> is_on_floor():<br>		<span class="hljs-keyword">if</span> is_zero_approx(direction):<br>			animation_player.play(<span class="hljs-string">&quot;idle&quot;</span>)<br>		<span class="hljs-keyword">else</span>:<br>			animation_player.play(<span class="hljs-string">&quot;running&quot;</span>)<br><span class="hljs-comment">#	else:</span><br>	<span class="hljs-keyword">elif</span> velocity.y &lt; <span class="hljs-number">0</span>:<br>		animation_player.play(<span class="hljs-string">&quot;jump&quot;</span>)<br>    <span class="hljs-keyword">else</span>:<br>        animation_player.play(<span class="hljs-string">&quot;fall&quot;</span>)<br>    ...<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-1-可复用的状态机脚本"><a href="#5-1-可复用的状态机脚本" class="headerlink" title="5.1 可复用的状态机脚本"></a>5.1 可复用的状态机脚本</h3><p>要求：引用时，必须为父节点实现函数 <code>get_next_state</code>（获取下一个状态）、<code>transition_state</code>（实现状态转换后的操作）和 <code>tick_physics</code>（作为 <code>_physics_process</code> 函数的替代）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python">extends Node<br>class_name StateMachine<br><br><span class="hljs-comment"># 避免枚举默认为0，导致“从0变到0”</span><br>var current_state: <span class="hljs-built_in">int</span> = -<span class="hljs-number">1</span>:<br>	<span class="hljs-comment"># 使用父节点的函数为变量赋值</span><br>	<span class="hljs-built_in">set</span>(v):<br>		owner.transition_state(current_state, v)<br>		current_state = v<br><br>func _ready() -&gt; void:<br>	<span class="hljs-comment"># 确保父节点ready，避免初始化后调用父节点函数而父节点unready</span><br>	<span class="hljs-keyword">await</span> owner.ready<br>	current_state = <span class="hljs-number">0</span><br><br>func _physics_process(delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	<span class="hljs-keyword">while</span> true:<br>		var <span class="hljs-built_in">next</span> := owner.get_next_state(current_state) <span class="hljs-keyword">as</span> <span class="hljs-built_in">int</span><br>		<span class="hljs-keyword">if</span> current_state == <span class="hljs-built_in">next</span>:<br>			<span class="hljs-keyword">break</span><br>		current_state = <span class="hljs-built_in">next</span><br><br>	<span class="hljs-comment"># 使用方无需定义_physics_process，只需定义此函数</span><br>	owner.tick_physics(current_state, delta)<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-2-重构当前代码"><a href="#5-2-重构当前代码" class="headerlink" title="5.2 重构当前代码"></a>5.2 重构当前代码</h3><ol start="0">
+<li>声明状态枚举 <code>State</code></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">enum State &#123;<br>	IDLE,<br>	RUNNING,<br>	JUMP,<br>	FALL,<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li><code>get_next_state</code> 函数的实现</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs python">func get_next_state(state: State) -&gt; State:<br>	var can_jump := is_on_floor() <span class="hljs-keyword">or</span> coyote_timer.time_left &gt; <span class="hljs-number">0</span><br>	var should_jump := can_jump <span class="hljs-keyword">and</span> jump_request_timer.time_left &gt; <span class="hljs-number">0</span><br>	<span class="hljs-keyword">if</span> should_jump:<br>		<span class="hljs-keyword">return</span> State.JUMP<br>  <br>    var direction := Input.get_axis(<span class="hljs-string">&quot;move_left&quot;</span>, <span class="hljs-string">&quot;move_right&quot;</span>)<br>	var is_still := is_zero_approx(direction) <span class="hljs-keyword">and</span> is_zero_approx(velocity.x)<br>  <br>    <span class="hljs-keyword">match</span> state:<br>		State.IDLE:<br>			<span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> is_on_floor():<br>				<span class="hljs-keyword">return</span> State.FALL<br>			<span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> is_still:<br>				<span class="hljs-keyword">return</span> State.RUNNING<br><br>		State.RUNNING:<br>			<span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> is_on_floor():<br>				<span class="hljs-keyword">return</span> State.FALL<br>			<span class="hljs-keyword">if</span> is_still:<br>				<span class="hljs-keyword">return</span> State.IDLE<br><br>		State.JUMP:<br>			<span class="hljs-keyword">if</span> velocity.y &gt;= <span class="hljs-number">0</span>:<br>				<span class="hljs-keyword">return</span> State.FALL<br><br>		State.FALL:<br>			<span class="hljs-keyword">if</span> is_on_floor():<br>				<span class="hljs-comment"># 如果角色横向移动，直接切换成running状态</span><br>                <span class="hljs-comment"># 补充：if后面的语句即便不写，StateMachine的死循环也可以让状态最终变成RUNNING</span><br>				<span class="hljs-keyword">return</span> State.IDLE <span class="hljs-keyword">if</span> is_still <span class="hljs-keyword">else</span> State.RUNNING<br><br>    <span class="hljs-keyword">return</span> state<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><code>transition_state</code> 函数的实现</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 在地面上的状态：站立和跑动</span><br>const GROUND_STATES := [State.IDLE, State.RUNNING]<br>...<br><br>func transition_state(<span class="hljs-keyword">from</span>: State, to: State) -&gt; void:<br>    <span class="hljs-comment"># 当上一状态不在地面上，下一状态在地面上，则关闭郊狼时间计时器</span><br>	<span class="hljs-keyword">if</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> GROUND_STATES <span class="hljs-keyword">and</span> to <span class="hljs-keyword">in</span> GROUND_STATES:<br>		coyote_timer.stop()<br><br>	<span class="hljs-keyword">match</span> to:<br>		State.IDLE:<br>			animation_player.play(<span class="hljs-string">&quot;idle&quot;</span>)<br><br>		State.RUNNING:<br>			animation_player.play(<span class="hljs-string">&quot;running&quot;</span>)<br><br>		State.JUMP:<br>			animation_player.play(<span class="hljs-string">&quot;jump&quot;</span>)<br>			velocity.y = JUMP_VELOCITY<br>			coyote_timer.stop()<br>			jump_request_timer.stop()<br><br>		State.FALL:<br>			animation_player.play(<span class="hljs-string">&quot;fall&quot;</span>)<br>            <span class="hljs-comment"># 进入fall状态，且上一状态在地面上（说明不是跳跃），则启动郊狼时间计时器</span><br>            <span class="hljs-comment"># 使用状态机就避免了使用长串bool表达式判断上一状态是否是跳跃状态的麻烦</span><br>			<span class="hljs-keyword">if</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">in</span> GROUND_STATES:<br>				coyote_timer.start()<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><code>tick_physics</code> 函数（在 <code>_physics_process</code> 的基础上，更名，删去多余的代码，加入状态机）</li>
+</ol>
+<p>为了方便起见，将原 <code>_physics_process</code> 函数的内容封装进 <code>move</code> 函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python">func tick_physics(state: State, delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	<span class="hljs-keyword">match</span> state:<br>		State.IDLE:<br>			move(delta)<br><br>		State.RUNNING:<br>			move(delta)<br><br>		State.JUMP:<br>			move(delta)<br><br>		State.FALL:<br>			move(delta)<br><br><br>func move(delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	var direction := Input.get_axis(<span class="hljs-string">&quot;move_left&quot;</span>, <span class="hljs-string">&quot;move_right&quot;</span>)<br>	var acceleration := FLOOR_ACCELERATION <span class="hljs-keyword">if</span> is_on_floor() <span class="hljs-keyword">else</span> AIR_ACCELERATION<br>	velocity.x = move_toward(velocity.x, direction * RUN_SPEED, acceleration * delta)<br>	velocity.y += gravity * delta<br><br>	<span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> is_zero_approx(direction):<br>		sprite_2d.flip_h = direction &lt; <span class="hljs-number">0</span><br><br>	move_and_slide()<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-3-解决“跳不动”的问题"><a href="#5-3-解决“跳不动”的问题" class="headerlink" title="5.3 解决“跳不动”的问题"></a>5.3 解决“跳不动”的问题</h3><p>“跳不动”的原因：原先设置完跳跃速度后会直接 <code>move_and_slide</code>，但改写后的代码通过 <code>move</code> 函数，会先被重力减速，再调用 <code>move_and_slide</code>，导致跳跃高度变小</p>
+<ul>
+<li>解决 1：直接更改重力（不合理，对 delta 有依赖）</li>
+<li>解决 2：<strong>在跳跃状态的第一帧关掉重力</strong>（更合理的做法）</li>
+</ul>
+<p>构造 <code>is_first_tick</code>，使跳跃的第一帧没有重力（避免“跳跃困难”）</p>
+<p>这里配合修改 <code>move</code> 函数，添加参数 gravity，便于跳跃状态调用时更改参数（需要将原先的全局变量 gravity 更名，函数体内部的语句由于使用的名称是 gravity，无需更改）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#var gravity := ProjectSettings.get(&quot;physics/2d/default_gravity&quot;) as float</span><br>var default_gravity := ProjectSettings.get(<span class="hljs-string">&quot;physics/2d/default_gravity&quot;</span>) <span class="hljs-keyword">as</span> <span class="hljs-built_in">float</span><br>var is_first_tick = false<br>...<br><br>func tick_physics(state: State, delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	<span class="hljs-keyword">match</span> state:<br>		State.IDLE:<br><span class="hljs-comment">#			move(delta)</span><br>			move(default_gravity, delta)<br><br>		State.RUNNING:<br><span class="hljs-comment">#			move(delta)</span><br>			move(default_gravity, delta)<br><br>		State.JUMP:<br><span class="hljs-comment">#			move(delta)</span><br>			<span class="hljs-comment"># 确保第一帧时重力为0，避免出现“跳不起来”的情况</span><br>			move(<span class="hljs-number">0.0</span> <span class="hljs-keyword">if</span> is_first_tick <span class="hljs-keyword">else</span> default_gravity, delta)<br><br>		State.FALL:<br><span class="hljs-comment">#			move(delta)</span><br>			move(default_gravity, delta)<br>    <span class="hljs-comment"># 每帧运行完后，再标识不是第一帧</span><br>    <span class="hljs-comment"># 这样当第一帧进入tick_physics时，调用move函数的is_first_tick就为true，运行完后恢复false</span><br>    is_first_tick = false<br><br><span class="hljs-comment">#func move(delta: float) -&gt; void:</span><br>func move(gravity: <span class="hljs-built_in">float</span>, delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>    ...<br><br>func transition_state(<span class="hljs-keyword">from</span>: State, to: State) -&gt; void:<br>	...<br>	<span class="hljs-comment"># 标识改变状态的第一帧</span><br>	is_first_tick = true<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-4-着陆状态"><a href="#5-4-着陆状态" class="headerlink" title="5.4 着陆状态"></a>5.4 着陆状态</h3><p>添加 LANDING 状态（需要为 landing 状态特制一个 <code>stand</code> 函数并在  <code>tick_physics</code> 中调用）</p>
+<p>注意：着陆动画是一次性的，要在动画节点中<strong>取消循环动画</strong></p>
+<p>对画面进行优化：</p>
+<ol>
+<li>对着陆动画的微调（更改吸附间隔为 0.05s，将后两帧往前移动 0.05s，缩短动画时长为 0.25s）</li>
+<li>着陆后奔跑，动画不会立刻停止，而是“边着陆边移动”：需要在 fall 状态转换时先判断是否静止</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs python">enum State &#123;<br>	...<br>	LANDING,<br>&#125;<br><br><span class="hljs-comment">#const GROUND_STATES := [State.IDLE, State.RUNNING]</span><br>const GROUND_STATES := [State.IDLE, State.RUNNING, State.LANDING]<br>...<br><br>func tick_physics(state: State, delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	<span class="hljs-keyword">match</span> state:<br>        ...<br>        State.LANDING:<br>            <span class="hljs-comment"># 着陆时需要保证玩家站立不动，不需要接受玩家水平移动输入</span><br>			stand(default_gravity, delta)<br><br><span class="hljs-comment"># 为landing状态特制的函数</span><br>func stand(gravity: <span class="hljs-built_in">float</span>, delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	var acceleration := FLOOR_ACCELERATION <span class="hljs-keyword">if</span> is_on_floor() <span class="hljs-keyword">else</span> AIR_ACCELERATION<br>	velocity.x = move_toward(velocity.x, <span class="hljs-number">0.0</span>, acceleration * delta)<br>	velocity.y += gravity * delta<br><br>	move_and_slide()<br><br>func get_next_state(state: State) -&gt; State:<br>    ...<br>    <span class="hljs-keyword">match</span> state:<br>        ...<br>        State.FALL:<br>            <span class="hljs-keyword">if</span> is_on_floor():<br>                <span class="hljs-comment"># 当前状态不是静止不动时，立即转换成跑动状态</span><br>                <span class="hljs-keyword">return</span> State.LANDING <span class="hljs-keyword">if</span> is_still <span class="hljs-keyword">else</span> State.RUNNING<br>    <br>        State.LANDING:<br>            <span class="hljs-comment"># 着陆动画结束后，再转换到站立状态</span><br>            <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> animation_player.is_playing():<br>                <span class="hljs-keyword">return</span> State.IDLE<br>	...<br><br>func transition_state(<span class="hljs-keyword">from</span>: State, to: State) -&gt; void:<br>	...<br>    <span class="hljs-keyword">match</span> to:<br>        ...<br>        State.LANDING:<br>			animation_player.play(<span class="hljs-string">&quot;landing&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<h2 id="06-滑墙"><a href="#06-滑墙" class="headerlink" title="06 滑墙"></a>06 滑墙</h2><ol>
+<li>滑墙动画部分<ol>
+<li>素材翻转、位置改动、将属性设置加入动画轨道</li>
+<li>修复位置改动后的翻转错位问题：重设父节点为新节点，修改翻转代码</li>
+<li>texture等关键帧必须在其他动画中重复设置（使用插件解决）</li>
+<li>介绍：RESET动画（一帧，0.001s，存放默认值）</li>
+</ol>
+</li>
+<li>编写逻辑部分<ol>
+<li>滑墙时，move参数设为1&#x2F;3的重力</li>
+<li>滑墙动画以墙面方向而非玩家输入为准，使用 <code>get_wall_normal</code>实现</li>
+<li>【相对苛刻的要求】滑墙条件的限制（手不能悬空，身体必须靠墙）-&gt;<code>RayCast</code></li>
+<li><code>RayCast</code>检测手和脚是否碰墙（改变父节点scale可以改变箭头方向）</li>
+</ol>
+</li>
+<li>微调动画素材<ol>
+<li>保证各状态位置匹配（主要是fall状态，jump状态不必考虑）</li>
+<li>再次修改landing动画（删去第一帧，因为fall的位置和第一帧雷同）</li>
+<li>【代码】landing后有移动输入，直接进入running状态（否则会出现“硬直”）</li>
+</ol>
+</li>
+</ol>
+
                 
               </div>
             
