@@ -19,13 +19,13 @@
     <meta name="description" content="教程视频链接：合集·《勇者传说》Godot 4教程 整理笔记的目的，主要是自己发觉跟着教程做一遍游戏 demo，并不能很好地掌握一些技术细节和设计流程，所以重新浏览一遍教程，并将比较重要的编程内容整理成笔记。 （注：部分笔记参考了瓦格良等其他网友的评论和总结） 00: 基础项目0.1 修改窗口大小和拉伸模式 设置「视口大小」为「窗口覆盖大小」的 1&#x2F;3（把游戏放大 3 倍显示，像素风游戏">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Godot 4 教程《勇者传说》编程笔记">
-<meta property="og:url" content="http://kazelee.github.io/2023/11/02/Godot-4-%E6%95%99%E7%A8%8B%E3%80%8A%E5%8B%87%E8%80%85%E4%BC%A0%E8%AF%B4%E3%80%8B%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:url" content="http://kazelee.github.io/2023/11/02/godot-4-2d-adv-notes/index.html">
+<meta property="og:site_name" content="BreezeLee&#39;s Blog">
 <meta property="og:description" content="教程视频链接：合集·《勇者传说》Godot 4教程 整理笔记的目的，主要是自己发觉跟着教程做一遍游戏 demo，并不能很好地掌握一些技术细节和设计流程，所以重新浏览一遍教程，并将比较重要的编程内容整理成笔记。 （注：部分笔记参考了瓦格良等其他网友的评论和总结） 00: 基础项目0.1 修改窗口大小和拉伸模式 设置「视口大小」为「窗口覆盖大小」的 1&#x2F;3（把游戏放大 3 倍显示，像素风游戏">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://kazelee.github.io/img/cover/2023-11-02.jpg">
 <meta property="article:published_time" content="2023-11-02T01:28:07.000Z">
-<meta property="article:modified_time" content="2023-11-03T09:28:20.909Z">
+<meta property="article:modified_time" content="2023-11-03T13:17:55.619Z">
 <meta property="article:author" content="BreezeLee">
 <meta property="article:tag" content="Godot">
 <meta property="article:tag" content="程序">
@@ -35,7 +35,7 @@
   
   
   
-  <title>Godot 4 教程《勇者传说》编程笔记 - Hexo</title>
+  <title>Godot 4 教程《勇者传说》编程笔记 - BreezeLee&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -235,7 +235,7 @@
         
         
         
-          225 分钟
+          227 分钟
         
       </span>
     
@@ -403,12 +403,12 @@
 </thead>
 <tbody><tr>
 <td align="center">玩家走出地面</td>
-<td align="center">is_on_floor &#x3D; 0<br>was_on_floor &#x3D; 1<br>should_jump &#x3D; 0</td>
+<td align="center">is_on_floor &#x3D; 0<code>&lt;br&gt;</code>was_on_floor &#x3D; 1<code>&lt;br&gt;</code>should_jump &#x3D; 0</td>
 <td align="center">开始计时</td>
 </tr>
 <tr>
 <td align="center">玩家跳离地面</td>
-<td align="center">is_on_floor &#x3D; 0<br>was_on_floor &#x3D; 1<br>should_jump &#x3D; 1</td>
+<td align="center">is_on_floor &#x3D; 0<code>&lt;br&gt;</code>was_on_floor &#x3D; 1<code>&lt;br&gt;</code>should_jump &#x3D; 1</td>
 <td align="center">停止计时</td>
 </tr>
 </tbody></table>
@@ -438,18 +438,18 @@
 </thead>
 <tbody><tr>
 <td align="center">velocity</td>
-<td align="center">v<sub>max</sub></td>
-<td align="center">0.5v<sub>max</sub></td>
+<td align="center">v<code>&lt;sub&gt;</code>max<code>&lt;/sub&gt;</code></td>
+<td align="center">0.5v<code>&lt;sub&gt;</code>max<code>&lt;/sub&gt;</code></td>
 <td align="center">0</td>
-<td align="center">-0.5v<sub>max</sub></td>
-<td align="center">-v<sub>max</sub></td>
+<td align="center">-0.5v<code>&lt;sub&gt;</code>max<code>&lt;/sub&gt;</code></td>
+<td align="center">-v<code>&lt;sub&gt;</code>max<code>&lt;/sub&gt;</code></td>
 </tr>
 <tr>
 <td align="center">height</td>
 <td align="center">0</td>
-<td align="center">0.75h<sub>max</sub></td>
-<td align="center">h<sub>max</sub></td>
-<td align="center">0.75h<sub>max</sub></td>
+<td align="center">0.75h<code>&lt;sub&gt;</code>max<code>&lt;/sub&gt;</code></td>
+<td align="center">h<code>&lt;sub&gt;</code>max<code>&lt;/sub&gt;</code></td>
+<td align="center">0.75h<code>&lt;sub&gt;</code>max<code>&lt;/sub&gt;</code></td>
 <td align="center">0</td>
 </tr>
 </tbody></table>
@@ -506,7 +506,7 @@
 <li>对着陆动画的微调（更改吸附间隔为 0.05s，将后两帧往前移动 0.05s，缩短动画时长为 0.25s）</li>
 <li>着陆后奔跑，动画不会立刻停止，而是“边着陆边移动”：需要在 fall 状态转换时先判断是否静止</li>
 </ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs python">enum State &#123;<br>	...<br>	LANDING,<br>&#125;<br><br><span class="hljs-comment">#const GROUND_STATES := [State.IDLE, State.RUNNING]</span><br>const GROUND_STATES := [State.IDLE, State.RUNNING, State.LANDING]<br>...<br><br>func tick_physics(state: State, delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	<span class="hljs-keyword">match</span> state:<br>        ...<br>        State.LANDING:<br>            <span class="hljs-comment"># 着陆时需要保证玩家站立不动，不需要接受玩家水平移动输入</span><br>			stand(default_gravity, delta)<br><br><span class="hljs-comment"># 为landing状态特制的函数</span><br>func stand(gravity: <span class="hljs-built_in">float</span>, delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	var acceleration := FLOOR_ACCELERATION <span class="hljs-keyword">if</span> is_on_floor() <span class="hljs-keyword">else</span> AIR_ACCELERATION<br>	velocity.x = move_toward(velocity.x, <span class="hljs-number">0.0</span>, acceleration * delta)<br>	velocity.y += gravity * delta<br><br>	move_and_slide()<br><br>func get_next_state(state: State) -&gt; State:<br>    ...<br>    <span class="hljs-keyword">match</span> state:<br>        ...<br>        State.FALL:<br>            <span class="hljs-keyword">if</span> is_on_floor():<br>                <span class="hljs-comment"># 当前状态不是静止不动时，立即转换成跑动状态</span><br>                <span class="hljs-keyword">return</span> State.LANDING <span class="hljs-keyword">if</span> is_still <span class="hljs-keyword">else</span> State.RUNNING<br>    <br>        State.LANDING:<br>            <span class="hljs-comment"># 着陆动画结束后，再转换到站立状态</span><br>            <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> animation_player.is_playing():<br>                <span class="hljs-keyword">return</span> State.IDLE<br>	...<br><br>func transition_state(<span class="hljs-keyword">from</span>: State, to: State) -&gt; void:<br>	...<br>    <span class="hljs-keyword">match</span> to:<br>        ...<br>        State.LANDING:<br>			animation_player.play(<span class="hljs-string">&quot;landing&quot;</span>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs python">enum State &#123;<br>	...<br>	LANDING,<br>&#125;<br><br><span class="hljs-comment">#const GROUND_STATES := [State.IDLE, State.RUNNING]</span><br>const GROUND_STATES := [State.IDLE, State.RUNNING, State.LANDING]<br>...<br><br>func tick_physics(state: State, delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	<span class="hljs-keyword">match</span> state:<br>        ...<br>        State.LANDING:<br>            <span class="hljs-comment"># 着陆时需要保证玩家站立不动，不需要接受玩家水平移动输入</span><br>			stand(default_gravity, delta)<br><br><span class="hljs-comment"># 为landing状态特制的函数</span><br>func stand(gravity: <span class="hljs-built_in">float</span>, delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	var acceleration := FLOOR_ACCELERATION <span class="hljs-keyword">if</span> is_on_floor() <span class="hljs-keyword">else</span> AIR_ACCELERATION<br>	velocity.x = move_toward(velocity.x, <span class="hljs-number">0.0</span>, acceleration * delta)<br>	velocity.y += gravity * delta<br><br>	move_and_slide()<br><br>func get_next_state(state: State) -&gt; State:<br>    ...<br>    <span class="hljs-keyword">match</span> state:<br>        ...<br>        State.FALL:<br>            <span class="hljs-keyword">if</span> is_on_floor():<br>                <span class="hljs-comment"># 当前状态不是静止不动时，立即转换成跑动状态</span><br>                <span class="hljs-keyword">return</span> State.LANDING <span class="hljs-keyword">if</span> is_still <span class="hljs-keyword">else</span> State.RUNNING<br>  <br>        State.LANDING:<br>            <span class="hljs-comment"># 着陆动画结束后，再转换到站立状态</span><br>            <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> animation_player.is_playing():<br>                <span class="hljs-keyword">return</span> State.IDLE<br>	...<br><br>func transition_state(<span class="hljs-keyword">from</span>: State, to: State) -&gt; void:<br>	...<br>    <span class="hljs-keyword">match</span> to:<br>        ...<br>        State.LANDING:<br>			animation_player.play(<span class="hljs-string">&quot;landing&quot;</span>)<br></code></pre></td></tr></table></figure>
 
 <h3 id="5-5-补充：状态机相关"><a href="#5-5-补充：状态机相关" class="headerlink" title="5.5 补充：状态机相关"></a>5.5 补充：状态机相关</h3><ol>
 <li>枚举状态机太过于传统，为什么不使用返回节点的方式？</li>
@@ -622,8 +622,8 @@
 
 <h2 id="08-野猪"><a href="#08-野猪" class="headerlink" title="08 野猪"></a>08 野猪</h2><h3 id="8-1-制作敌人场景"><a href="#8-1-制作敌人场景" class="headerlink" title="8.1 制作敌人场景"></a>8.1 制作敌人场景</h3><p>为敌人设计一个模板场景，各节点的设计与 Player 类似</p>
 <ul>
-<li>Enemy（Character2D节点）<ul>
-<li>Graphics（Node2D节点）<ul>
+<li>Enemy（Character2D 节点）<ul>
+<li>Graphics（Node2D 节点）<ul>
 <li>Sprite2D</li>
 </ul>
 </li>
@@ -633,7 +633,7 @@
 </ul>
 </li>
 </ul>
-<p>编写模板场景的脚本（<code>@export</code> 声明导出变量，可以在编辑器中赋值，类似Unity的 <code>[SerializeField]</code>）</p>
+<p>编写模板场景的脚本（<code>@export</code> 声明导出变量，可以在编辑器中赋值，类似 Unity 的 <code>[SerializeField]</code>）</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python">class_name Enemy<br>extends CharacterBody2D<br><br>enum Direction &#123;<br>	LEFT = -<span class="hljs-number">1</span>,<br>	RIGHT = +<span class="hljs-number">1</span>,<br>&#125;<br><br><span class="hljs-meta">@export var direction := Direction.LEFT:</span><br>	<span class="hljs-built_in">set</span>(v):<br>		direction = v<br>        <span class="hljs-comment"># 素材图片默认面朝左边</span><br>		graphics.scale.x = -direction<br><span class="hljs-comment"># 在父场景中设置最大速度和加速度，声明为导出变量，子场景可以修改</span><br><span class="hljs-meta">@export var max_speed: float = <span class="hljs-number">180</span></span><br><span class="hljs-meta">@export var acceleration: float = <span class="hljs-number">2000</span></span><br><br>var default_gravity := ProjectSettings.get(<span class="hljs-string">&quot;physics/2d/default_gravity&quot;</span>) <span class="hljs-keyword">as</span> <span class="hljs-built_in">float</span><br><br><span class="hljs-meta">@onready var graphics: Node2D = $Graphics</span><br><span class="hljs-meta">@onready var animation_player: AnimationPlayer = $AnimationPlayer</span><br><span class="hljs-meta">@onready var state_machine: Node = $StateMachine</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="8-2-制作野猪场景"><a href="#8-2-制作野猪场景" class="headerlink" title="8.2 制作野猪场景"></a>8.2 制作野猪场景</h3><p>新建空场景，选择继承自 Enemy 场景（<strong>黄色的节点</strong>表示继承自其他场景）</p>
@@ -650,7 +650,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># Enemy.gd</span><br><span class="hljs-comment"># speed为目标速度</span><br>func move(speed: <span class="hljs-built_in">float</span>, delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	velocity.x = move_toward(velocity.x, speed * direction, acceleration * delta)<br>	velocity.y += default_gravity * delta<br><br>	move_and_slide()<br></code></pre></td></tr></table></figure>
 
 <h3 id="8-4-调试常见错误"><a href="#8-4-调试常见错误" class="headerlink" title="8.4 调试常见错误"></a>8.4 调试常见错误</h3><ol>
-<li>export 先于 onready 初始化，所以 export 的 set 方法修改值 onready 的值时，应该等待ready完成</li>
+<li>export 先于 onready 初始化，所以 export 的 set 方法修改值 onready 的值时，应该等待 ready 完成</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@export var direction := Direction.LEFT:</span><br>	<span class="hljs-built_in">set</span>(v):<br>		direction = v<br>        <span class="hljs-comment"># 等待当前节点ready，在修改其变量</span><br>		<span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> is_node_ready():<br>			<span class="hljs-keyword">await</span> ready<br>		graphics.scale.x = -direction<br></code></pre></td></tr></table></figure>
 
@@ -684,19 +684,19 @@
 <li>处理地面消失的情况（应该优先处理，所以可以把 is_on_floor 的判断放在开头）</li>
 </ol>
 <p>补充：这样也解决了 LANDING 状态下如果离开地面不会立刻进入 FALL 状态的隐藏 bug</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python">func get_next_state(state: State) -&gt; State:<br>	...<br>    <span class="hljs-comment"># 如果当前状态不在“地面上状态”中，进入fall状态</span><br>	<span class="hljs-keyword">if</span> state <span class="hljs-keyword">in</span> GROUND_STATES <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> is_on_floor():<br>		<span class="hljs-keyword">return</span> State.FALL<br>    ...<br>	<span class="hljs-keyword">match</span> state:<br>        State.IDLE:<br><span class="hljs-comment">#			if not is_on_floor():</span><br><span class="hljs-comment">#				return State.FALL</span><br>            <span class="hljs-keyword">if</span> Input.is_action_just_pressed(<span class="hljs-string">&quot;attack&quot;</span>):<br>				<span class="hljs-keyword">return</span> State.ATTACK_1<br>			...<br>        State.RUNNING:<br><span class="hljs-comment">#			if not is_on_floor():</span><br><span class="hljs-comment">#				return State.FALL</span><br>            <span class="hljs-keyword">if</span> Input.is_action_just_pressed(<span class="hljs-string">&quot;attack&quot;</span>):<br>				<span class="hljs-keyword">return</span> State.ATTACK_1<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python">func get_next_state(state: State) -&gt; State:<br>	...<br>    <span class="hljs-comment"># 如果上一状态属于“地面上状态”，但现在不满足is_on_floor，则进入fall状态</span><br>	<span class="hljs-keyword">if</span> state <span class="hljs-keyword">in</span> GROUND_STATES <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> is_on_floor():<br>		<span class="hljs-keyword">return</span> State.FALL<br>    ...<br>	<span class="hljs-keyword">match</span> state:<br>        State.IDLE:<br><span class="hljs-comment">#			if not is_on_floor():</span><br><span class="hljs-comment">#				return State.FALL</span><br>            <span class="hljs-keyword">if</span> Input.is_action_just_pressed(<span class="hljs-string">&quot;attack&quot;</span>):<br>				<span class="hljs-keyword">return</span> State.ATTACK_1<br>			...<br>        State.RUNNING:<br><span class="hljs-comment">#			if not is_on_floor():</span><br><span class="hljs-comment">#				return State.FALL</span><br>            <span class="hljs-keyword">if</span> Input.is_action_just_pressed(<span class="hljs-string">&quot;attack&quot;</span>):<br>				<span class="hljs-keyword">return</span> State.ATTACK_1<br></code></pre></td></tr></table></figure>
 
 <ol start="4">
 <li>补完剩下的状态机逻辑</li>
 </ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python">func tick_physics(state: State, delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	<span class="hljs-keyword">match</span> state:<br>        ...<br>        <span class="hljs-comment"># 三段攻击的物理逻辑相同：要求攻击时停在原地，动画播完后再移动</span><br>		State.ATTACK_1, State.ATTACK_2, State.ATTACK_3:<br>			stand(default_gravity, delta)<br><br>func transition_state(<span class="hljs-keyword">from</span>: State, to: State) -&gt; void:<br>	...<br>    <span class="hljs-keyword">match</span> to:<br>		...<br>        <span class="hljs-comment"># 播放动画，并将连击触发条件恢复到false（下同）</span><br>		State.ATTACK_1:<br>			animation_player.play(<span class="hljs-string">&quot;attack_1&quot;</span>)<br>			is_combo_requested = false<br><br>		State.ATTACK_2:<br>			animation_player.play(<span class="hljs-string">&quot;attack_2&quot;</span>)<br>			is_combo_requested = false<br><br>		State.ATTACK_3:<br>			animation_player.play(<span class="hljs-string">&quot;attack_3&quot;</span>)<br>			is_combo_requested = false<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python">func tick_physics(state: State, delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	<span class="hljs-keyword">match</span> state:<br>        ...<br>        <span class="hljs-comment"># 三段攻击的物理逻辑相同：要求攻击时停在原地，动画播完后再移动</span><br>		State.ATTACK_1, State.ATTACK_2, State.ATTACK_3:<br>			stand(default_gravity, delta)<br><br>func transition_state(<span class="hljs-keyword">from</span>: State, to: State) -&gt; void:<br>	...<br>    <span class="hljs-keyword">match</span> to:<br>		...<br>        <span class="hljs-comment"># 播放动画，并将连击触发条件恢复到false（下同）</span><br>		State.ATTACK_1:<br>			animation_player.play(<span class="hljs-string">&quot;attack_1&quot;</span>)<br>			is_combo_requested = false<br><br>		State.ATTACK_2:<br>			animation_player.play(<span class="hljs-string">&quot;attack_2&quot;</span>)<br>			is_combo_requested = false<br><br>		State.ATTACK_3:<br>			animation_player.play(<span class="hljs-string">&quot;attack_3&quot;</span>)<br>			is_combo_requested = false<br></code></pre></td></tr></table></figure>
 
 <h3 id="9-3-野猪bug修复"><a href="#9-3-野猪bug修复" class="headerlink" title="9.3 野猪bug修复"></a>9.3 野猪bug修复</h3><p>bug：野猪可以透过墙面看到玩家</p>
 <ul>
 <li>player_checker 添加环境 mask，同时使用 can_see_player 做判断</li>
 <li>需要在 player 脚本前添加 <code>class_name Player</code></li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># boar.gd</span><br>func can_see_player() -&gt; <span class="hljs-built_in">bool</span>:<br>    <span class="hljs-comment"># 没检测到，返回false</span><br>	<span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> player_checker.is_colliding():<br>		<span class="hljs-keyword">return</span> false<br>	<span class="hljs-keyword">else</span>:<br>        <span class="hljs-comment"># 仅当检测到的对象是Player是，返回true</span><br>		<span class="hljs-keyword">return</span> player_checker.get_collider() <span class="hljs-keyword">is</span> Player<br>    <br>func tick_physics(state: State, delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	<span class="hljs-keyword">match</span> state:<br>		...<br>		State.RUN:<br><span class="hljs-comment">#			if player_checker.is_colliding():</span><br>			<span class="hljs-keyword">if</span> can_see_player():<br>				calm_down_timer.start()<br><br>func get_next_state(state: State) -&gt; State:<br><span class="hljs-comment">#	if player_checker.is_colliding():</span><br>	<span class="hljs-keyword">if</span> can_see_player():<br>		<span class="hljs-keyword">return</span> State.RUN<br>    ...<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># boar.gd</span><br>func can_see_player() -&gt; <span class="hljs-built_in">bool</span>:<br>    <span class="hljs-comment"># 没检测到，返回false</span><br>	<span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> player_checker.is_colliding():<br>		<span class="hljs-keyword">return</span> false<br>	<span class="hljs-keyword">else</span>:<br>        <span class="hljs-comment"># 仅当检测到的对象是Player是，返回true</span><br>		<span class="hljs-keyword">return</span> player_checker.get_collider() <span class="hljs-keyword">is</span> Player<br><br>func tick_physics(state: State, delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	<span class="hljs-keyword">match</span> state:<br>		...<br>		State.RUN:<br><span class="hljs-comment">#			if player_checker.is_colliding():</span><br>			<span class="hljs-keyword">if</span> can_see_player():<br>				calm_down_timer.start()<br><br>func get_next_state(state: State) -&gt; State:<br><span class="hljs-comment">#	if player_checker.is_colliding():</span><br>	<span class="hljs-keyword">if</span> can_see_player():<br>		<span class="hljs-keyword">return</span> State.RUN<br>    ...<br></code></pre></td></tr></table></figure>
 
 <h3 id="9-4-补充：项目参考"><a href="#9-4-补充：项目参考" class="headerlink" title="9.4 补充：项目参考"></a>9.4 补充：项目参考</h3><p>一个暂时做到三段攻击的项目，有部分改进：<a target="_blank" rel="noopener" href="https://github.com/xingmot/2d_ARPG">xingmot&#x2F;2d_ARPG</a></p>
 <ul>
@@ -769,7 +769,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Godot 4 教程《勇者传说》编程笔记</div>
-      <div>http://kazelee.github.io/2023/11/02/Godot-4-教程《勇者传说》编程笔记/</div>
+      <div>http://kazelee.github.io/2023/11/02/godot-4-2d-adv-notes/</div>
     </div>
     <div class="license-meta">
       
@@ -812,6 +812,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/11/08/algorithm-switch-problem/" title="开关问题算法与游戏中的例子">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">开关问题算法与游戏中的例子</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
