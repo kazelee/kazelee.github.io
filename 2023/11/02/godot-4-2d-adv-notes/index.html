@@ -25,11 +25,11 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://kazelee.github.io/img/cover/2023-11-02.jpg">
 <meta property="article:published_time" content="2023-11-02T01:28:07.000Z">
-<meta property="article:modified_time" content="2023-11-03T13:17:55.619Z">
+<meta property="article:modified_time" content="2023-11-10T15:41:05.623Z">
 <meta property="article:author" content="BreezeLee">
 <meta property="article:tag" content="Godot">
-<meta property="article:tag" content="程序">
 <meta property="article:tag" content="笔记">
+<meta property="article:tag" content="程序">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://kazelee.github.io/img/cover/2023-11-02.jpg">
   
@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          27k 字
+          32k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          227 分钟
+          270 分钟
         
       </span>
     
@@ -691,7 +691,7 @@
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python">func tick_physics(state: State, delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	<span class="hljs-keyword">match</span> state:<br>        ...<br>        <span class="hljs-comment"># 三段攻击的物理逻辑相同：要求攻击时停在原地，动画播完后再移动</span><br>		State.ATTACK_1, State.ATTACK_2, State.ATTACK_3:<br>			stand(default_gravity, delta)<br><br>func transition_state(<span class="hljs-keyword">from</span>: State, to: State) -&gt; void:<br>	...<br>    <span class="hljs-keyword">match</span> to:<br>		...<br>        <span class="hljs-comment"># 播放动画，并将连击触发条件恢复到false（下同）</span><br>		State.ATTACK_1:<br>			animation_player.play(<span class="hljs-string">&quot;attack_1&quot;</span>)<br>			is_combo_requested = false<br><br>		State.ATTACK_2:<br>			animation_player.play(<span class="hljs-string">&quot;attack_2&quot;</span>)<br>			is_combo_requested = false<br><br>		State.ATTACK_3:<br>			animation_player.play(<span class="hljs-string">&quot;attack_3&quot;</span>)<br>			is_combo_requested = false<br></code></pre></td></tr></table></figure>
 
-<h3 id="9-3-野猪bug修复"><a href="#9-3-野猪bug修复" class="headerlink" title="9.3 野猪bug修复"></a>9.3 野猪bug修复</h3><p>bug：野猪可以透过墙面看到玩家</p>
+<h3 id="9-3-野猪-bug-修复"><a href="#9-3-野猪-bug-修复" class="headerlink" title="9.3 野猪 bug 修复"></a>9.3 野猪 bug 修复</h3><p>bug：野猪可以透过墙面看到玩家</p>
 <ul>
 <li>player_checker 添加环境 mask，同时使用 can_see_player 做判断</li>
 <li>需要在 player 脚本前添加 <code>class_name Player</code></li>
@@ -704,7 +704,107 @@
 <li>着陆状态现在只有从比较高的地方掉下来才会进入，而且此状态下玩家仍然可以左右移动，但是速度会变慢</li>
 <li>为蹬墙跳的 x 轴方向也做了小跳</li>
 </ul>
-<style>
+<h2 id="10-攻击框"><a href="#10-攻击框" class="headerlink" title="10 攻击框"></a>10 攻击框</h2><h3 id="10-1-攻击框和受击框"><a href="#10-1-攻击框和受击框" class="headerlink" title="10.1 攻击框和受击框"></a>10.1 攻击框和受击框</h3><p>要点：将攻击双方抽象成 hitbox 和 hurtbox</p>
+<ul>
+<li>两个 box 的重叠表示“攻击”</li>
+<li>通过信号传递 hit 和 hurt 信息，一般只由其中一方发出（案例中是 hitbox）</li>
+</ul>
+<p>hitbox.gd</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python">extends Area2D<br>class_name Hitbox<br><br>signal hit(hurtbox)<br><br>func _init() -&gt; void:<br>	area_entered.connect(_on_area_entered)<br><br>func _on_area_entered(hurtbox: Hurtbox) -&gt; void:<br>	<span class="hljs-comment"># 调试内容：谁打了谁</span><br>	<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;[Hit] %s =&gt; %s&quot;</span> % [owner.name, hurtbox.owner.name])<br>	hit.emit(hurtbox)<br>	hurtbox.hurt.emit(self)<br></code></pre></td></tr></table></figure>
+
+<p>hurtbox.gd</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">extends Area2D<br>class_name Hurtbox<br><br>signal hurt(hitbox)<br></code></pre></td></tr></table></figure>
+
+<h3 id="10-2-场景处理"><a href="#10-2-场景处理" class="headerlink" title="10.2 场景处理"></a>10.2 场景处理</h3><ol>
+<li>野猪攻击玩家</li>
+</ol>
+<p>设置：需要为 hurtbox 专门设置物理层和碰撞形状</p>
+<ul>
+<li>Hurtbox 应该呆在自己的层上（layer），不主动寻找别人（mask）</li>
+<li>Hitbox 不应该呆在任何层上（layer），但需要寻找别的 Hurtbox（mask）</li>
+</ul>
+<p>Area2D 的<strong>碰撞区域可以设置多个</strong>，组成更复杂的形状（如十字）</p>
+<ol start="2">
+<li>玩家攻击野猪</li>
+</ol>
+<p>注意：玩家三段攻击的攻击区域各不相同（通过动画帧设置）</p>
+<p>Godot 复制节点，资源是共享的，所以复制节点更改属性，原节点也会更改（这时需要在 Rectangle2D 中的矩形选择「唯一化」）</p>
+<p>可以在运行时，通过左侧节点树的「远程」选项，将野猪的 PlayerChecker 禁用（野猪不会“暴走”），便于测试三段攻击的命中效果</p>
+<h3 id="10-3-传递信号"><a href="#10-3-传递信号" class="headerlink" title="10.3 传递信号"></a>10.3 传递信号</h3><p>脚本中自定义的信号，可以在节点面板找到并添加（这里也体现了信号参数的作用）</p>
+<p>如：在野猪脚本中（使用信号）添加如下函数，玩家攻击野猪后，打印“Ouch!”</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">func _on_hurtbox_hurt(hitbox: Hitbox) -&gt; void:<br>	<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Ouch!&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<h3 id="10-4-补充建议"><a href="#10-4-补充建议" class="headerlink" title="10.4 补充建议"></a>10.4 补充建议</h3><ol>
+<li>这种解决方法在大部分情况都有效果，但是在处理隔墙或者隔盾攻击等场景时无法满足需求。比如隔盾攻击时如果攻击框同时覆盖盾和敌人，希望是盾收到攻击判定，但是如果是从敌人后方同时覆盖，则希望是敌人收到判断。一种解决方案是加上raycast，碰到墙壁或者盾后停止，根据 RayCast 长度修正攻击框形状，但是这个解决方案有点复杂。是否有更简明一些的解决方案?</li>
+</ol>
+<p>这种设计不可避免地会涉及到 RayCast；盾牌的情况，因为有时候可能会希望隔着盾牌只是减少若干百分比的攻击，或者也能产生一定的击退，所以不在攻击&#x2F;受击框的层面解决这个问题会灵活一点。</p>
+<ol start="2">
+<li>攻击判定还是用代码控制好一些。以坐标进行判定，攻击伤害、击飞、出现时间等数据可以存在数据表内，不用依赖于动画。</li>
+</ol>
+<p>使用动画来控制一些行为理论上肯定是没有问题的，对于小项目而言完全够用；当然，根据评论区给出的建议，通过别的方式控制或许会更好。</p>
+<!--个人补充：参考之前个人复刻油管的 ARPG 游戏教程，将其移植到 Godot 4 版本的时候，就在动画处理中出了问题。当时的问题是，要实现攻击状态动画播放完毕后进入站立/跑动状态，如果直接在动画帧上新建信号函数会出 bug，当时的解决方案就是在代码中使用计时器，设置为动画时长，进入攻击状态后开始计时，timeout 后进入下一状态。
+
+现在回头再看，其实直接在脚本中判断当前的 animationplayer 是否在播放动画即可（因为攻击动画必然是没有循环的）；不过当时的项目是使用动画树的，会有很多问题。在这种情况下，使用计时器这种方法虽然麻烦，但肯定是最保险的做法。
+
+此外，这种方式也很符合把逻辑和画面拆分的思想。逻辑上，攻击状态是按下攻击键引发的，动画是进入攻击状态后开始播放的；退出攻击状态，也应该与攻击键绑定，而不是与动画绑定。-->
+
+<h2 id="11-受伤和死亡"><a href="#11-受伤和死亡" class="headerlink" title="11 受伤和死亡"></a>11 受伤和死亡</h2><h3 id="11-1-基础逻辑"><a href="#11-1-基础逻辑" class="headerlink" title="11.1 基础逻辑"></a>11.1 基础逻辑</h3><p>如果简单地实现“被打后消失”，可以直接调用 <code>queue_free</code> 函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">func _on_hurtbox_hurt(hitbox: Hitbox) -&gt; void:<br>	queue_free()<br></code></pre></td></tr></table></figure>
+
+<p>显然，我们需要野猪血更厚，这就需要为野猪设置血量。我们可以写一个 stats.gd 脚本，用于存储和处理对象（玩家和敌人）的血量等统计数值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python">extends Node<br>class_name Stats<br><br><span class="hljs-meta">@export var max_health: int = <span class="hljs-number">3</span></span><br><br><span class="hljs-comment"># 节点ready后再初始化，避免了export值更改无法同步变更的问题</span><br><span class="hljs-meta">@onready var health: int = max_health:</span><br>	<span class="hljs-built_in">set</span>(v):<br>		<span class="hljs-comment"># 限制health的范围在0-max之间</span><br>		v = clampi(v, <span class="hljs-number">0</span>, max_health)<br>		<span class="hljs-keyword">if</span> health == v:<br>			<span class="hljs-keyword">return</span><br>		health = v<br></code></pre></td></tr></table></figure>
+
+<p>在 Enemy 场景中导入 Stats 节点（并在脚本中引用），在野猪场景中编写代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># enemy.gd</span><br><span class="hljs-meta">@onready var stats: Node = $Stats</span><br><br><span class="hljs-comment"># boar.gd</span><br>func _on_hurtbox_hurt(hitbox: Hitbox) -&gt; void:<br>	stats.health -= <span class="hljs-number">1</span><br>	<span class="hljs-keyword">if</span> stats.health == <span class="hljs-number">0</span>:<br>		queue_free()<br></code></pre></td></tr></table></figure>
+
+<p>这是最简单的实现，默认攻击 1 次减少 1 点血，可以引入玩家的攻击力，或者针对玩家的几段攻击予以不同的扣血量等等。这里是教程就不多做延申了。</p>
+<h3 id="11-2-野猪动画"><a href="#11-2-野猪动画" class="headerlink" title="11.2 野猪动画"></a>11.2 野猪动画</h3><p>淡出效果：添加 modulate 关键帧，使得开始的 alpha 为 1，结束的 alpha 为 0（这个值会乘上颜色，乘 0 就表示透明）</p>
+<p>野猪受击或死亡时，进入“硬直”状态，不会再对玩家攻击，不会再受到攻击：通过动画帧实现</p>
+<p>补充：Area2D 的 monitoring 是能否检测别的区域，monitorable 是能否被别的区域检测到</p>
+<h3 id="11-3-野猪代码"><a href="#11-3-野猪代码" class="headerlink" title="11.3 野猪代码"></a>11.3 野猪代码</h3><p>添加受击和濒死状态：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">enum State &#123;<br>	...<br>	HURT,<br>	DYING,<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>一般的教程会在 <code>_on_hurtbox_hurt</code> 函数中处理受击逻辑，本教程的做法是只传递信息，然后交给状态机的处理函数处理。这里使用一个继承自 RefCounted 的脚本来完成。</p>
+<p>注：ReferCounted 是最基础的计数类，会<strong>在不使用的时候自动释放</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># damage.gd</span><br>extends RefCounted<br>class_name Damage<br><br>var amount: <span class="hljs-built_in">int</span><br>var source: Node2D<br></code></pre></td></tr></table></figure>
+
+<p>在脚本中新建变量 <code>pending_damage</code> 表示待处理的伤害：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">var pending_damage: Damage<br><br>func _on_hurtbox_hurt(hitbox: Hitbox) -&gt; void:<br>	pending_damage = Damage.new()<br>	pending_damage.amount = <span class="hljs-number">1</span><br>	<span class="hljs-comment"># 这意味着永远只记录最后一次攻击的攻击方</span><br>	<span class="hljs-comment"># 如果需要记录多个攻击者的话，可以改成数组或者混合处理</span><br>	pending_damage.source = hitbox.owner<br></code></pre></td></tr></table></figure>
+
+<p>改写状态机相关的函数代码，这里将 <code>can_see_player</code> 的逻辑写进原先的各状态里面，因为引入的新状态会导致旧逻辑不成立（看到玩家，野猪不一定会跑动）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 击退值</span><br>const KNOCKBACK_AMOUNT := <span class="hljs-number">512.0</span><br><br>func tick_physics(state: State, delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	<span class="hljs-keyword">match</span> state:<br>		<span class="hljs-comment"># 受击和濒死状态是不动的</span><br>		State.IDLE, State.HURT, State.DYING:<br>			move(<span class="hljs-number">0.0</span>, delta)<br>		...<br><br>func get_next_state(state: State) -&gt; State:<br><span class="hljs-comment">#	if can_see_player():</span><br><span class="hljs-comment">#		return State.RUN</span><br>	<br>	<span class="hljs-keyword">if</span> stats.health == <span class="hljs-number">0</span>:<br>		<span class="hljs-keyword">return</span> State.DYING<br>	<br>	<span class="hljs-keyword">if</span> pending_damage:<br>		<span class="hljs-keyword">return</span> State.HURT<br>	<br>	<span class="hljs-keyword">match</span> state:<br>		State.IDLE:<br>			<span class="hljs-keyword">if</span> can_see_player():<br>				<span class="hljs-keyword">return</span> State.RUN<br>			...<br><br>		State.WALK:<br>			<span class="hljs-keyword">if</span> can_see_player():<br>				<span class="hljs-keyword">return</span> State.RUN<br>			...<br><br>		State.RUN:<br>			<span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> can_see_player() <span class="hljs-keyword">and</span> calm_down_timer.is_stopped():<br>				<span class="hljs-keyword">return</span> State.WALK<br>		<br>		State.HURT:<br>			<span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> animation_player.is_playing():<br>				<span class="hljs-keyword">return</span> State.RUN<br>	<br>	<span class="hljs-keyword">return</span> state<br><br>func transition_state(<span class="hljs-keyword">from</span>: State, to: State) -&gt; void:<br>	<span class="hljs-keyword">match</span> to:<br>		...<br>		State.HURT:<br>			animation_player.play(<span class="hljs-string">&quot;hit&quot;</span>)<br>			stats.health -= pending_damage.amount<br>			<span class="hljs-comment"># 方向由攻击来源指向自己</span><br>			var <span class="hljs-built_in">dir</span> := pending_damage.source.global_position.direction_to(global_position)<br>			velocity = <span class="hljs-built_in">dir</span> * KNOCKBACK_AMOUNT<br>			<br>			<span class="hljs-keyword">if</span> <span class="hljs-built_in">dir</span>.x &gt; <span class="hljs-number">0</span>:<br>				direction = Direction.LEFT<br>			<span class="hljs-keyword">else</span>:<br>				direction = Direction.RIGHT<br>			<br>			pending_damage = null<br>			<br>		State.DYING:<br>			animation_player.play(<span class="hljs-string">&quot;die&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>目前野猪血量为 0 后会变透明，但不会真的消失，还是需要调用 queue_free 函数。我们可以在 enemy 脚本中编写函数专门处理死亡的情况。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">func die() -&gt; void:<br>	queue_free()<br></code></pre></td></tr></table></figure>
+
+<p>一个可行的调用方法是，在 <code>get_next_state</code> 函数中编写 <code>State.DYING</code> 逻辑，但作者人物这样会使得 <code>get_next_state</code> 函数“不再纯粹”。作者更建议直接在动画轨道中调用函数。</p>
+<h3 id="11-4-问题修复"><a href="#11-4-问题修复" class="headerlink" title="11.4 问题修复"></a>11.4 问题修复</h3><ol>
+<li>玩家攻击很迟钝（“前摇太长”）：仿照 landing 动画缩短前几帧的时长</li>
+<li>野猪实际上是不需要设置十字形状的碰撞区域的（教程只是为了演示多碰撞区域）</li>
+<li>可能会出现玩家背对野猪攻击依然能够攻击到的情况<ol>
+<li>解决方案 1：加入方向判断（比较麻烦）</li>
+<li>解决方案 2：将 hitbox 缩小（向玩家面朝方向移动）</li>
+</ol>
+</li>
+<li>快速攻击可能会卡在受击状态（可以对状态机脚本进行修改）</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">const KEEP_CURRENT := -<span class="hljs-number">1</span><br><br>func _physics_process(delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	<span class="hljs-keyword">while</span> true:<br>		var <span class="hljs-built_in">next</span> := owner.get_next_state(current_state) <span class="hljs-keyword">as</span> <span class="hljs-built_in">int</span><br><span class="hljs-comment">#		if current_state == next:</span><br>		<span class="hljs-comment"># 用-1代替状态不变的情况</span><br>		<span class="hljs-keyword">if</span> <span class="hljs-built_in">next</span> == KEEP_CURRENT:<br>			<span class="hljs-keyword">break</span><br>		current_state = <span class="hljs-built_in">next</span><br></code></pre></td></tr></table></figure>
+
+<p>需要对 Player 和 Boar 的状态机部分的 <code>get_next_state</code> 函数进行修改：将函数返回类型改成 int（因为会返回 -1），将兜底返回值改成 KEEP_CURRENT（表示状态不变）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 对 player.gd 和 boar.gd</span><br><span class="hljs-comment">#func get_next_state(state: State) -&gt; State:</span><br>func get_next_state(state: State) -&gt; <span class="hljs-built_in">int</span>:<br>	...<br><span class="hljs-comment">#	return state</span><br>	<span class="hljs-comment"># 直接引用常量，所以使用静态类的属性即可</span><br>	<span class="hljs-keyword">return</span> StateMachine.KEEP_CURRENT<br></code></pre></td></tr></table></figure>
+
+<!-- 不必彻底理解内在的机理，只需要了解有这个问题，以后写代码的时候注意即可；不要在这种问题上浪费太多的时间！ -->
+
+<p>这段代码就可以保证进入受击状态后，不会再卡在受击状态中：</p>
+<ol>
+<li><code>get_next_state</code> <strong>每帧都会调用</strong>，而 <code>transition_state</code> 只有改变状态了才会调用</li>
+<li>在当前状态为 hurt，清空 pending_damage 且动画未播完后，又受到了一次攻击，这个时候 hurt -&gt; hurt 不会调用 <code>transition_state</code> 中清空 pending_damage 的逻辑，所以会卡死在 hurt 状态中</li>
+<li>现在引入了 KEEP_CURRENT 后，保持在 hurt 状态下会返回 -1，在这期间再次受到攻击，就会再次返回 hurt 状态，调用 <code>transition_state</code> 函数，清空 pending_damage，避免卡死</li>
+</ol>
+<p>当然，这样就会导致死亡后会重复进入死亡状态（血量为 0 -&gt; 死了 -&gt; 返回 -1 -&gt; 血量为 0 -&gt; 死了 -&gt; 返回 -1 -&gt; ……），需要稍作修改：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">func get_next_state(state: State) -&gt; <span class="hljs-built_in">int</span>:<br>	<span class="hljs-keyword">if</span> stats.health == <span class="hljs-number">0</span>:<br><span class="hljs-comment">#		return State.DYING</span><br>		<span class="hljs-comment"># 保证第一帧进入的时候返回dying，以后都返回-1</span><br>		<span class="hljs-keyword">return</span> StateMachine.KEEP_CURRENT <span class="hljs-keyword">if</span> state == State.DYING <span class="hljs-keyword">else</span> State.DYING<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="11-5-玩家动画"><a href="#11-5-玩家动画" class="headerlink" title="11.5 玩家动画"></a>11.5 玩家动画</h3><style>
 .center {
   width: auto;
   display: table;
@@ -754,9 +854,9 @@
       
         <a href="/tags/Godot/">#Godot</a>
       
-        <a href="/tags/%E7%A8%8B%E5%BA%8F/">#程序</a>
-      
         <a href="/tags/%E7%AC%94%E8%AE%B0/">#笔记</a>
+      
+        <a href="/tags/%E7%A8%8B%E5%BA%8F/">#程序</a>
       
     </div>
   
