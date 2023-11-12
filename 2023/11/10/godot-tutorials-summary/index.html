@@ -16,16 +16,16 @@
   <meta name="author" content="BreezeLee">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本总结主要涉及到的教程有：  【中字】Godot 3.2像素风ARPG制作教程（全集）_哔哩哔哩_bilibili 合集·Godot 3.x 平台跳跃游戏教程 合集·《迷失岛2》游戏框架 合集·《勇者传说》Godot 4教程  状态机">
+    <meta name="description" content="本总结主要涉及到的教程有：  【中字】Godot 3.2像素风ARPG制作教程（全集）_哔哩哔哩_bilibili 合集·Godot 3.x 平台跳跃游戏教程 合集·《迷失岛2》游戏框架 合集·《勇者传说》Godot 4教程  状态机（逻辑与动画的处理）ARPG 项目的做法（注：该做法虽然基于 uheartbeast 的 ARPG 项目，但思想是从别人教程中借鉴的） 将逻辑与动画分离，逻辑部分通过">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Godot 教程与开发流程总结">
+<meta property="og:title" content="Godot 教程与开发流程初步总结">
 <meta property="og:url" content="http://kazelee.github.io/2023/11/10/godot-tutorials-summary/index.html">
 <meta property="og:site_name" content="BreezeLee&#39;s Blog">
-<meta property="og:description" content="本总结主要涉及到的教程有：  【中字】Godot 3.2像素风ARPG制作教程（全集）_哔哩哔哩_bilibili 合集·Godot 3.x 平台跳跃游戏教程 合集·《迷失岛2》游戏框架 合集·《勇者传说》Godot 4教程  状态机">
+<meta property="og:description" content="本总结主要涉及到的教程有：  【中字】Godot 3.2像素风ARPG制作教程（全集）_哔哩哔哩_bilibili 合集·Godot 3.x 平台跳跃游戏教程 合集·《迷失岛2》游戏框架 合集·《勇者传说》Godot 4教程  状态机（逻辑与动画的处理）ARPG 项目的做法（注：该做法虽然基于 uheartbeast 的 ARPG 项目，但思想是从别人教程中借鉴的） 将逻辑与动画分离，逻辑部分通过">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://kazelee.github.io/img/cover/godot-arpg.jpg">
 <meta property="article:published_time" content="2023-11-10T11:49:40.000Z">
-<meta property="article:modified_time" content="2023-11-10T15:51:55.347Z">
+<meta property="article:modified_time" content="2023-11-12T14:50:03.505Z">
 <meta property="article:author" content="BreezeLee">
 <meta property="article:tag" content="Godot">
 <meta property="article:tag" content="笔记">
@@ -34,7 +34,7 @@
   
   
   
-  <title>Godot 教程与开发流程总结 - BreezeLee&#39;s Blog</title>
+  <title>Godot 教程与开发流程初步总结 - BreezeLee&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Godot 教程与开发流程总结"></span>
+            <span id="subtitle" data-typed-text="Godot 教程与开发流程初步总结"></span>
           
         </div>
 
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          106 字
+          3.1k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          1 分钟
+          26 分钟
         
       </span>
     
@@ -272,7 +272,7 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Godot 教程与开发流程总结</h1>
+            <h1 style="display: none">Godot 教程与开发流程初步总结</h1>
             
             
               <div class="markdown-body">
@@ -284,7 +284,64 @@
 <li><a target="_blank" rel="noopener" href="https://space.bilibili.com/7092/channel/collectiondetail?sid=439500">合集·《迷失岛2》游戏框架</a></li>
 <li><a target="_blank" rel="noopener" href="https://space.bilibili.com/7092/channel/collectiondetail?sid=1304862">合集·《勇者传说》Godot 4教程</a></li>
 </ul>
-<h2 id="状态机"><a href="#状态机" class="headerlink" title="状态机"></a>状态机</h2>
+<h2 id="状态机（逻辑与动画的处理）"><a href="#状态机（逻辑与动画的处理）" class="headerlink" title="状态机（逻辑与动画的处理）"></a>状态机（逻辑与动画的处理）</h2><h3 id="ARPG-项目的做法"><a href="#ARPG-项目的做法" class="headerlink" title="ARPG 项目的做法"></a>ARPG 项目的做法</h3><p>（注：该做法虽然基于 uheartbeast 的 ARPG 项目，但思想是从别人教程中借鉴的）</p>
+<p>将逻辑与动画分离，逻辑部分通过 <code>_physics_process</code> 每帧轮询，动画部分通过 <code>_process</code> 每帧轮询。两个函数都监听玩家的输入，然后分别做逻辑和动画的处理。</p>
+<p>代码形如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 一个全局状态变量，State是状态枚举类</span><br>var state := State.IDLE<br><br><span class="hljs-comment"># 处理动画/素材加载等</span><br>func _process(delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	update_animation_parameters()<br><br><span class="hljs-comment"># 处理角色状态/运动逻辑等</span><br>func _physics_process(delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	<span class="hljs-comment"># 接受玩家输入</span><br>	input_vector = Input...<br>	...<br>	<span class="hljs-comment"># 对各状态执行不同的操作</span><br>	<span class="hljs-keyword">match</span> state:<br>		State.IDLE:<br>			<span class="hljs-comment"># 可以为每个状态专门写一个函数处理</span><br>			...<br>		...<br><br><span class="hljs-comment"># 动画处理函数，在_process中调用</span><br>func update_animation_parameters() -&gt; void:<br>	<span class="hljs-keyword">if</span> ... <span class="hljs-comment"># 状态/按下什么键……</span><br>		<span class="hljs-comment"># 播放动画（这里是动画树设置状态转移bool值的例子）</span><br>		animation_tree[<span class="hljs-string">&quot;...&quot;</span>] = true<br>	...<br></code></pre></td></tr></table></figure>
+
+<p>这种做法是自己早期编程探索出来的，现在看来稍显幼稚，难以支撑大项目的开发。</p>
+<h3 id="timothyqiu-的做法"><a href="#timothyqiu-的做法" class="headerlink" title="timothyqiu 的做法"></a>timothyqiu 的做法</h3><p>编写一个可以复用的状态机脚本，项目中所有需要切换状态的对象都可以引用此节点，并实现所需的函数；所有的对象实现状态切换的模式都是一样的，也便于管理。</p>
+<p>状态机脚本（这里直接复制 2D Adventure 的代码）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs python">class_name StateMachine<br>extends Node<br><br>const KEEP_CURRENT := -<span class="hljs-number">1</span><br><br><span class="hljs-comment"># 避免枚举默认为0，导致“从0变到0”</span><br>var current_state: <span class="hljs-built_in">int</span> = -<span class="hljs-number">1</span>:<br>	<span class="hljs-comment"># 使用父节点的函数为变量赋值</span><br>	<span class="hljs-built_in">set</span>(v):<br>		owner.transition_state(current_state, v)<br>		current_state = v<br>		state_time = <span class="hljs-number">0</span><br><br><span class="hljs-comment"># 在状态机中实现Timer的效果</span><br>var state_time: <span class="hljs-built_in">float</span><br><br>func _ready() -&gt; void:<br>	<span class="hljs-comment"># 确保父节点ready，避免初始化后调用父节点函数而父节点unready</span><br>	<span class="hljs-keyword">await</span> owner.ready<br>	current_state = <span class="hljs-number">0</span><br><br>func _physics_process(delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	<span class="hljs-keyword">while</span> true:<br>		var <span class="hljs-built_in">next</span> := owner.get_next_state(current_state) <span class="hljs-keyword">as</span> <span class="hljs-built_in">int</span><br>		<span class="hljs-keyword">if</span> <span class="hljs-built_in">next</span> == KEEP_CURRENT:<br>			<span class="hljs-keyword">break</span><br>		current_state = <span class="hljs-built_in">next</span><br><br>	<span class="hljs-comment"># 使用方无需定义physics_process，只需定义此函数</span><br>	owner.tick_physics(current_state, delta)<br>	state_time += delta<br></code></pre></td></tr></table></figure>
+
+<p>需要实现的函数：</p>
+<ul>
+<li>get_next_state - 获取下一个状态（每帧都调用，状态相同返回 -1）<ul>
+<li>内容：根据当前状态和操作，判断下一个状态是什么</li>
+<li>形如 <code>State.A: if ... : return State.B</code></li>
+</ul>
+</li>
+<li>transition_state - 状态改变时的操作（只在状态前后不同的时候才调用）<ul>
+<li>内容：状态切换的瞬间应该做什么（包括动画播放和其他一些操作）</li>
+<li>形如 <code>if -&gt; State.A: animation_player.player(...) do xxx</code></li>
+</ul>
+</li>
+<li>tick_physics - 调用状态机的对象，用来替代 <code>_physics_process</code> 的函数<ul>
+<li>运动逻辑，形如 <code>match state: State.A: move(...)</code></li>
+</ul>
+</li>
+</ul>
+<p>注意：最好不要把其他的逻辑塞进这三个函数中（比如，如果想要实现动画播放结束后执行一些操作，最好不要在 get_next_state 函数中实现，毕竟这个函数只用于返回下一状态，如果状态不变，就不应该有多余的操作；可以在动画轨道中调用，或者写一个回调函数）</p>
+<h3 id="节点状态机初探"><a href="#节点状态机初探" class="headerlink" title="节点状态机初探"></a>节点状态机初探</h3><h2 id="UI-设计（Panel-x2F-回合制-x2F-解谜）"><a href="#UI-设计（Panel-x2F-回合制-x2F-解谜）" class="headerlink" title="UI 设计（Panel&#x2F;回合制&#x2F;解谜）"></a>UI 设计（Panel&#x2F;回合制&#x2F;解谜）</h2><h3 id="节点补间动画"><a href="#节点补间动画" class="headerlink" title="节点补间动画"></a>节点补间动画</h3><h2 id="多对象交互（动作）"><a href="#多对象交互（动作）" class="headerlink" title="多对象交互（动作）"></a>多对象交互（动作）</h2><h3 id="攻击与无敌时间"><a href="#攻击与无敌时间" class="headerlink" title="攻击与无敌时间"></a>攻击与无敌时间</h3><p>攻击的本质，是攻击方的 Hitbox 与受击方的 Hurtbox 重叠，大致的流程是：</p>
+<ul>
+<li>攻击方进入攻击状态，开启 Hitbox</li>
+<li>如果攻击状态中，Hitbox 与 Hurtbox 重叠：<ul>
+<li>受击方进行相应的操作，如扣血、添加受击效果等（可通过传递自定义信号，或使用 area_entered 信号传进的 area 的属性实现）</li>
+</ul>
+</li>
+<li>如果没有重叠，无事发生（miss）</li>
+<li>攻击状态结束，关闭 Hitbox</li>
+<li>（注：自始至终，对象的 Hurtbox 都是默认开启的，除非进入无敌时间或游戏需要）</li>
+</ul>
+<p>无敌时间，一般使用计时器来实现：受击时，开启无敌时间，设置 hurtbox 的可见性为 false；timeout 后，设置 hurtbox 的可见性为 true</p>
+<p>补充：uheartbeast 的项目中，是直接在 area 的信号函数中扣血，而 timothyqiu 的项目是在 transition_state 中的 Hurt 状态下扣血（后者尽可能把状态转换的操作都放进函数 case 中）</p>
+<p>需要注意的问题：</p>
+<ol>
+<li>通常 Hitbox 和 Hurtbox 关于重叠的处理，只在其中一个里面实现：如果在 Hitbox 中实现，Hurtbox 的可见性与 monitorable 挂钩；如果在 Hurtbox 中实现，Hurtbox 的可见性与 monitoring 挂钩（这也是 uheartbeast 的项目中的一个问题：搞混了两个参数）</li>
+<li>如果有受击动画，并且无敌时间在受击动画之间，可以考虑在受击动画的轨道上设置变量值</li>
+</ol>
+<h3 id="敌人追踪玩家"><a href="#敌人追踪玩家" class="headerlink" title="敌人追踪玩家"></a>敌人追踪玩家</h3><ol>
+<li>使用 RayCast 实现：常用于横板动作游戏中地面人物的寻物 AI</li>
+</ol>
+<p>RayCast 从敌人的眼睛发出，检测敌人前方的玩家（不包括后方，所以玩家可以背后偷袭）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@onready var player_checker: RayCast2D = $Graphics/PlayerChecker</span><br><br>func can_see_player() -&gt; <span class="hljs-built_in">bool</span>:<br>	<span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> player_checker.is_colliding():<br>		<span class="hljs-keyword">return</span> false<br>	<span class="hljs-keyword">else</span>:<br>		<span class="hljs-keyword">return</span> player_checker.get_collider() <span class="hljs-keyword">is</span> Player<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>使用 Area2D 实现：常用于俯视角 2D 游戏，或横板动作游戏的飞行敌人寻物 AI</li>
+</ol>
+<p>为敌人设置一个检测玩家的 Area，玩家进入敌人的 DetectionArea 时，敌人登记玩家；玩家离开后，变量恢复空值。敌人的脚本在需要追踪玩家时，调用函数判断是否检测到玩家：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python">extends Area2D<br><br>var player = null<br><br>func can_see_player():<br>	<span class="hljs-keyword">return</span> player != null<br><br>func _on_body_entered(body: Node2D) -&gt; void:<br>	player = body<br><br>func _on_body_exited(body: Node2D) -&gt; void:<br>	player = null<br></code></pre></td></tr></table></figure>
+
                 
               </div>
             
@@ -338,7 +395,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Godot 教程与开发流程总结</div>
+      <div>Godot 教程与开发流程初步总结</div>
       <div>http://kazelee.github.io/2023/11/10/godot-tutorials-summary/</div>
     </div>
     <div class="license-meta">
