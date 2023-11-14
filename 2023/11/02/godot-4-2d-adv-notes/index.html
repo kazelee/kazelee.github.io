@@ -16,20 +16,20 @@
   <meta name="author" content="BreezeLee">
   <meta name="keywords" content="">
   
-    <meta name="description" content="教程视频链接：合集·《勇者传说》Godot 4教程 整理笔记的目的，主要是自己发觉跟着教程做一遍游戏 demo，并不能很好地掌握一些技术细节和设计流程，所以重新浏览一遍教程，并将比较重要的编程内容整理成笔记。 （注：部分笔记参考了瓦格良等其他网友的评论和总结） 00: 基础项目0.1 修改窗口大小和拉伸模式 设置「视口大小」为「窗口覆盖大小」的 1&#x2F;3（把游戏放大 3 倍显示，像素风游戏">
+    <meta name="description" content="教程视频链接：合集·《勇者传说》Godot 4教程 整理笔记的目的，主要是自己发觉跟着教程做一遍游戏 demo，并不能很好地掌握一些技术细节和设计流程，所以重新浏览一遍教程，并将比较重要的编程内容整理成笔记。 （注：部分笔记参考了瓦格良等其他网友的评论和总结） 00 基础项目0.1 修改窗口大小和拉伸模式 设置「视口大小」为「窗口覆盖大小」的 1&#x2F;3（把游戏放大 3 倍显示，像素风游戏常">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Godot 4 教程《勇者传说》编程笔记">
 <meta property="og:url" content="http://kazelee.github.io/2023/11/02/godot-4-2d-adv-notes/index.html">
 <meta property="og:site_name" content="BreezeLee&#39;s Blog">
-<meta property="og:description" content="教程视频链接：合集·《勇者传说》Godot 4教程 整理笔记的目的，主要是自己发觉跟着教程做一遍游戏 demo，并不能很好地掌握一些技术细节和设计流程，所以重新浏览一遍教程，并将比较重要的编程内容整理成笔记。 （注：部分笔记参考了瓦格良等其他网友的评论和总结） 00: 基础项目0.1 修改窗口大小和拉伸模式 设置「视口大小」为「窗口覆盖大小」的 1&#x2F;3（把游戏放大 3 倍显示，像素风游戏">
+<meta property="og:description" content="教程视频链接：合集·《勇者传说》Godot 4教程 整理笔记的目的，主要是自己发觉跟着教程做一遍游戏 demo，并不能很好地掌握一些技术细节和设计流程，所以重新浏览一遍教程，并将比较重要的编程内容整理成笔记。 （注：部分笔记参考了瓦格良等其他网友的评论和总结） 00 基础项目0.1 修改窗口大小和拉伸模式 设置「视口大小」为「窗口覆盖大小」的 1&#x2F;3（把游戏放大 3 倍显示，像素风游戏常">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://kazelee.github.io/img/cover/2023-11-02.jpg">
 <meta property="article:published_time" content="2023-11-02T01:28:07.000Z">
-<meta property="article:modified_time" content="2023-11-12T13:14:57.885Z">
+<meta property="article:modified_time" content="2023-11-14T11:41:29.617Z">
 <meta property="article:author" content="BreezeLee">
+<meta property="article:tag" content="游戏">
 <meta property="article:tag" content="Godot">
-<meta property="article:tag" content="笔记">
-<meta property="article:tag" content="程序">
+<meta property="article:tag" content="教程">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://kazelee.github.io/img/cover/2023-11-02.jpg">
   
@@ -281,7 +281,7 @@
                 <p>教程视频链接：<a target="_blank" rel="noopener" href="https://space.bilibili.com/7092/channel/collectiondetail?sid=1304862">合集·《勇者传说》Godot 4教程</a></p>
 <p>整理笔记的目的，主要是自己发觉跟着教程做一遍游戏 demo，并不能很好地掌握一些技术细节和设计流程，所以重新浏览一遍教程，并将比较重要的编程内容整理成笔记。</p>
 <p>（注：部分笔记参考了<a target="_blank" rel="noopener" href="https://space.bilibili.com/3863194/article">瓦格良</a>等其他网友的评论和总结）</p>
-<h2 id="00-基础项目"><a href="#00-基础项目" class="headerlink" title="00: 基础项目"></a>00: 基础项目</h2><h3 id="0-1-修改窗口大小和拉伸模式"><a href="#0-1-修改窗口大小和拉伸模式" class="headerlink" title="0.1 修改窗口大小和拉伸模式"></a>0.1 修改窗口大小和拉伸模式</h3><ol>
+<h2 id="00-基础项目"><a href="#00-基础项目" class="headerlink" title="00 基础项目"></a>00 基础项目</h2><h3 id="0-1-修改窗口大小和拉伸模式"><a href="#0-1-修改窗口大小和拉伸模式" class="headerlink" title="0.1 修改窗口大小和拉伸模式"></a>0.1 修改窗口大小和拉伸模式</h3><ol>
 <li>设置「视口大小」为<strong>「窗口覆盖大小」的 1&#x2F;3</strong>（把游戏放大 3 倍显示，像素风游戏常用）</li>
 <li>修改拉伸模式为 canvas_items（拉伸窗口后，画面会跟着放大）</li>
 <li>项目-项目设置-渲染-纹理-默认纹理过滤：Nearest（保留纹理像素风格，不做线性滤波）</li>
@@ -307,7 +307,7 @@
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs python">extends CharacterBody2D<br><span class="hljs-meta">@onready var animation_player: AnimationPlayer = $AnimationPlayer</span><br><span class="hljs-meta">@onready var sprite_2d: Sprite2D = $Sprite2D</span><br><br>const RUN_SPEED := <span class="hljs-number">200.0</span><br><span class="hljs-comment"># 是负数的原因是因为在2D空间中y轴向上为负</span><br>const JUMP_VELOCITY := -<span class="hljs-number">300.0</span><br><span class="hljs-comment"># 获取引擎给的重力加速度</span><br>var gravty := ProjectSettings.get(<span class="hljs-string">&quot;physics/2d/default_gravity&quot;</span>) <span class="hljs-keyword">as</span> <span class="hljs-built_in">float</span><br><br><span class="hljs-comment"># 每个物理帧调用一次</span><br>func _physics_process(delta: <span class="hljs-built_in">float</span>) -&gt; void:<br>	<span class="hljs-comment"># 获取按键输入</span><br>	var direction :=  Input.get_axis(<span class="hljs-string">&quot;move_left&quot;</span>,<span class="hljs-string">&quot;move_right&quot;</span>)<br>	<span class="hljs-comment"># 修改速度向量</span><br>	velocity.x = direction * RUN_SPEED<br>	velocity.y += gravty * delta<br><br>	<span class="hljs-comment"># 如果在地板上并且按下了jump键，那么就修改角色y坐标变为跳跃值</span><br>	<span class="hljs-keyword">if</span> is_on_floor() <span class="hljs-keyword">and</span> Input.is_action_just_pressed(<span class="hljs-string">&quot;jump&quot;</span>):<br>		velocity.y = JUMP_VELOCITY<br><br>	<span class="hljs-comment"># 如果在地板上，没有移动则播放idle动画，有移动则播放running动画，如果不在地板上则播放jump动画</span><br>	<span class="hljs-keyword">if</span> is_on_floor():<br>		<span class="hljs-keyword">if</span> is_zero_approx(direction):<br>			animation_player.play(<span class="hljs-string">&quot;idle&quot;</span>)<br>		<span class="hljs-keyword">else</span>:<br>			animation_player.play(<span class="hljs-string">&quot;running&quot;</span>)<br>	<span class="hljs-keyword">else</span>:<br>		animation_player.play(<span class="hljs-string">&quot;jump&quot;</span>)<br><br>	<span class="hljs-comment"># 如果在移动，并且是向左移动，那么将角色水平翻转</span><br>	<span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> is_zero_approx(direction):<br>		sprite_2d.flip_h = direction &lt; <span class="hljs-number">0</span><br>	move_and_slide()<br></code></pre></td></tr></table></figure>
 
-<h2 id="01-相机"><a href="#01-相机" class="headerlink" title="01: 相机"></a>01: 相机</h2><h3 id="1-0-编辑器设置"><a href="#1-0-编辑器设置" class="headerlink" title="1.0 编辑器设置"></a>1.0 编辑器设置</h3><p>将脚本编辑器中的「补全」，设置为「添加类型提示」：可以提高编辑器性能和编写的流畅</p>
+<h2 id="01-相机"><a href="#01-相机" class="headerlink" title="01 相机"></a>01 相机</h2><h3 id="1-0-编辑器设置"><a href="#1-0-编辑器设置" class="headerlink" title="1.0 编辑器设置"></a>1.0 编辑器设置</h3><p>将脚本编辑器中的「补全」，设置为「添加类型提示」：可以提高编辑器性能和编写的流畅</p>
 <h3 id="1-1-TileMap-快捷键补充"><a href="#1-1-TileMap-快捷键补充" class="headerlink" title="1.1 TileMap 快捷键补充"></a>1.1 TileMap 快捷键补充</h3><ol>
 <li>ctrl + 左键点击：吸取单个图块</li>
 <li>ctrl + 按住左键拖动：吸取多个图块</li>
@@ -911,11 +911,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
+        <a href="/tags/%E6%B8%B8%E6%88%8F/">#游戏</a>
+      
         <a href="/tags/Godot/">#Godot</a>
       
-        <a href="/tags/%E7%AC%94%E8%AE%B0/">#笔记</a>
-      
-        <a href="/tags/%E7%A8%8B%E5%BA%8F/">#程序</a>
+        <a href="/tags/%E6%95%99%E7%A8%8B/">#教程</a>
       
     </div>
   
