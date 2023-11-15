@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://kazelee.github.io/img/cover/godot-arpg.jpg">
 <meta property="article:published_time" content="2023-11-10T11:49:40.000Z">
-<meta property="article:modified_time" content="2023-11-14T10:24:12.974Z">
+<meta property="article:modified_time" content="2023-11-15T02:16:51.677Z">
 <meta property="article:author" content="BreezeLee">
 <meta property="article:tag" content="游戏">
 <meta property="article:tag" content="Godot">
@@ -387,18 +387,15 @@
 <p>注意：最好不要把其他的逻辑塞进这三个函数中（比如，如果想要实现动画播放结束后执行一些操作，最好不要在 get_next_state 函数中实现，毕竟这个函数只用于返回下一状态，如果状态不变，就不应该有多余的操作；可以在动画轨道中调用，或者写一个回调函数）</p>
 <h3 id="节点状态机初探"><a href="#节点状态机初探" class="headerlink" title="节点状态机初探"></a>节点状态机初探</h3><p>高级状态机参考文章：<a target="_blank" rel="noopener" href="https://shaggydev.com/2022/02/13/advanced-state-machines-godot/">Building a more advanced state machine in Godot – The Shaggy Dev</a><br>YouTube 教程：</p>
 <ul>
-<li><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ow_Lum-Agbs">Finite State Machines in Godot 4 in Under 10 Minutes - YouTube</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=fuGiJdMrCAk">State Machine Setup for 2D Platformer Character ~ Godot 4 GameDev Tutorial - YouTube</a><br>基础的 State 类包括如下的方法：</p>
-</li>
-<li><p>Enter：进入此状态的操作</p>
-</li>
-<li><p>Exit：离开此状态的操作</p>
-</li>
-<li><p>Update：与画面和逻辑有关的操作（如动画、计时器）</p>
-</li>
-<li><p>Physics Update：与运动物理有关的操作（如速度）</p>
-</li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ow_Lum-Agbs">Finite State Machines in Godot 4 in Under 10 Minutes - YouTube</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=fuGiJdMrCAk">State Machine Setup for 2D Platformer Character ~ Godot 4 GameDev Tutorial - YouTube</a></li>
+</ul>
+<p>基础的 State 类包括如下的方法：</p>
+<ul>
+<li>Enter：进入此状态的操作</li>
+<li>Exit：离开此状态的操作</li>
+<li>Update：与画面和逻辑有关的操作（如动画、计时器）</li>
+<li>Physics Update：与运动物理有关的操作（如速度）</li>
 </ul>
 <p>往往需要一个状态机&#x2F;管理来控制状态的转换并记录当前状态，通常包含：</p>
 <ul>
@@ -595,12 +592,6 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
-                    
-                      <a href="/2023/11/14/godot-cotton-puzzle-notes/" title="Godot 教程《迷失岛2》回顾总结">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Godot 教程《迷失岛2》回顾总结</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
                     
                   </article>
                   <article class="post-next col-6">
