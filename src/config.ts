@@ -56,6 +56,18 @@ export const profileConfig: ProfileConfig = {
   name: 'Breeze Lee',
   bio: '诚然，真理是发现不完的，但科学决不因此而退缩。',
   links: [
+    // {
+    //   name: 'Twitter',
+    //   icon: 'fa6-brands:twitter',       // Visit https://icones.js.org/ for icon codes
+    //                                     // You will need to install the corresponding icon set if it's not already included
+    //                                     // `pnpm add @iconify-json/<icon-set-name>`
+    //   url: 'https://twitter.com',
+    // },
+    // {
+    //   name: 'Steam',
+    //   icon: 'fa6-brands:steam',
+    //   url: 'https://store.steampowered.com',
+    // },
     {
       name: 'GitHub',
       icon: 'fa6-brands:github',       // Visit https://icones.js.org/ for icon codes

@@ -74,21 +74,23 @@ $$
 由于模均为 2，很容易想到另一种运算：异或。我们可以把上面的方程组看作是“每个方程的各变量必须有奇数个奇数”，如 $a+b+c \equiv 1 \pmod 2$ 就可以理解成 a，b，c 这三个数中，奇数应该有 1 个，或者 3 个都是，这就很容易用异或方程组来表示。
 
 $$
-\left\{\begin{matrix}\begin{align*}
+\left\{\begin{matrix}\begin{align}
 a \oplus b \oplus c = 1 \\
 b \oplus c \oplus d = 1 \\
 c \oplus a \oplus e = 1 \\
 d \oplus b \oplus e \oplus f = 1 \\
 e \oplus c \oplus d = 1 \\
 f \oplus d \oplus g = 1 \\
-g \oplus f = 1 \end{align*}
+g \oplus f = 1 \end{align}
 \end{matrix}\right.
 $$
+
+<!-- astro 的公式序号始终无法右对齐，不折腾了 -->
 
 经过很简单的推算就可以得到答案（带入验证过程略）：
 
 $$
-\begin{align}
+\begin{align*}
 &\because \left\{\begin{matrix} 
   f \oplus d \oplus g = (g \oplus f) \oplus d &= 1 \space (6) \\
   g \oplus f &= 1 \space (7)
@@ -105,7 +107,7 @@ $$
 &\therefore a = 0, b = 1 \\
 &\because d \oplus b \oplus e \oplus f = 1 \space (4) \\
 &\therefore f = 1, g = 0
-\end{align}
+\end{align*}
 $$
 
 根据计算得到的结果，我们只需要依次点击第 2、第 5 和第 6 个节点，就可以解决该谜题。
@@ -374,7 +376,7 @@ loop_solve()
 
 但这种策略是有问题的，我们可以把这种策略用在方程的特殊值测试上：
 
-```math
+$$
 \begin{align*}
 &\left\{\begin{matrix} 
 2a+b &\equiv 5 \pmod{7} \\
@@ -393,18 +395,18 @@ d &\equiv 1 \pmod{7} \\
 2d &\equiv 3 \pmod{6} 
 \end{matrix}\right. \\
 \end{align*}
-```
+$$
 
 最后得到的方程组是无解的，因为 $2d$ 作为一个偶数，除 6 后的余数一定也是偶数，不可能是 3。所以，这种策略不可行，最后不得不调整前面的节点。
 
 然而，或许是逃离方块系列的制作组考虑到了这一点，对游戏的规则做了一点小小的改动：点击章鱼的一条触角，会先在自身和相邻的触角上先各增加一个吸盘，如果没有解题，再在自身上增加一各吸盘。这样，如果最后两根触角都只差一个吸盘，点击最后一根触角，也可以解题。如若使用上述策略，考虑这种情形，最后得到的方程组如下：
 
-```math
+$$
 \left\{\begin{matrix} 
 d &\equiv 1 \pmod{7} \\
 2d-1 &\equiv 3 \pmod{6} 
 \end{matrix}\right. \\
-```
+$$
 
 易得当 d = 8 时，满足条件。使用这种策略，可以解决该谜题。
 

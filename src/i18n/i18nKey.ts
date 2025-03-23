@@ -32,6 +32,9 @@ enum I18nKey {
   author = 'author',
   publishedAt = 'publishedAt',
   license = 'license',
+  friends = 'friends',
+  bookshelf = 'bookshelf',
+  projects = 'projects',
 }
 
 export default I18nKey

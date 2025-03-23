@@ -61,6 +61,7 @@ let links: NavBarLink[] = navBarConfig.links.map(
 </div>
 
 <script>
+
 function switchTheme() {
     if (localStorage.theme === 'dark') {
         document.documentElement.classList.remove('dark');
@@ -101,6 +102,10 @@ function loadButtonScript() {
 }
 
 loadButtonScript();
+
+document.addEventListener('astro:after-swap', () => {
+    loadButtonScript();
+}, { once: false });
 </script>
 
 {import.meta.env.PROD && <script is:inline define:vars={{scriptUrl: url('/pagefind/pagefind.js')}}>
