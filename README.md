@@ -2,6 +2,10 @@
 
 基于 [Astro](https://astro.build) & [Fuwari](https://github.com/saicaca/fuwari) 的个人静态博客网站。
 
+主题配置参考 [Water Space - Fall In The Water](https://www.waterwater.moe/) 和 [时歌的博客 - 理解以真实为本，但真实本身并不会自动呈现](https://www.lapis.cafe/)
+
+<!-- 吐槽：只有 Water Space 的博客网站可以实现移动端主题不丢失，Fuwari 官方和时歌的博客都有主题丢失的问题。但鉴于 Water Space 自定义页面取消了 TOC 和分类，尝试修改时出现很多问题难以修复，故最终还是选择放弃，不考虑网站对移动端的优化了。 -->
+
 ## ⚙️ 文章 Frontmatter
 
 ```yaml

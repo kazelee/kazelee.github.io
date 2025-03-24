@@ -13,12 +13,12 @@ import rehypeSlug from 'rehype-slug'
 import remarkDirective from 'remark-directive' /* Handle directives */
 import remarkGithubAdmonitionsToDirectives from 'remark-github-admonitions-to-directives'
 import remarkMath from 'remark-math'
+import remarkSectionize from 'remark-sectionize'
 import { AdmonitionComponent } from './src/plugins/rehype-component-admonition.mjs'
 import { GithubCardComponent } from './src/plugins/rehype-component-github-card.mjs'
 import { parseDirectiveNode } from './src/plugins/remark-directive-rehype.js'
 import { remarkExcerpt } from './src/plugins/remark-excerpt.js'
 import { remarkReadingTime } from './src/plugins/remark-reading-time.mjs'
-import remarkSectionize from "remark-sectionize";
 // const oklchToHex = (str) => {
 //   const DEFAULT_HUE = 250
 //   const regex = /-?\d+(\.\d+)?/g
@@ -55,8 +55,8 @@ export default defineConfig({
     }),
     icon({
       include: {
-        mdi: ["*"],
-        tabler: ["*"],
+        mdi: ['*'],
+        tabler: ['*'],
         'material-symbols': ['*'],
         'fa6-brands': ['*'],
         'fa6-regular': ['*'],
