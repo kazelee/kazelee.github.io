@@ -4,10 +4,10 @@ published: 2023-11-10
 description: "初学 Godot 时，对自己所学教程知识点的归纳（早期内容，相对粗浅稚嫩）"
 tags: ["Godot", "游戏"]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
-【写在前面】本文为初学 Godot 整理的笔记，内容质量无法保证，仅供参考
+【写在前面】本文为初学 Godot 整理的笔记，内容质量一般，仅供参考
 
 本总结主要涉及到的教程有：
 

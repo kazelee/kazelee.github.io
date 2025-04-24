@@ -5,7 +5,7 @@ description: "基于 timothyqiu 的 Godot 4《勇者传说》横版卷轴动作�
 image: "./cover.jpg"
 tags: ["Godot", "游戏"]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
 教程视频链接：[合集·《勇者传说》Godot 4教程](https://space.bilibili.com/7092/lists/1304862?type=season)
@@ -1852,3 +1852,128 @@ func update_health() -> void:
 	# 为红色血条创建补间动画：value -> percentage 持续0.3s
 	create_tween().tween_property(eased_health_bar, "value", percentage, 0.3)
 ```
+
+<!-- #### #13 滑铲（2023-11-26） -->
+
+---
+
+补充：从 13 章以后，笔记为归档自己曾经自用的临时汇总，较为简略，仅供参考
+
+## 13 滑铲
+
+- [如何实现滑铲｜Godot 4 教程《勇者传说》#13_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1o64y1j7oq/)
+	- 分为开始、循环、结尾三个状态，撞到墙/时间大于一定值停止，用于闪避
+	- 重构了很多代码：添加 SlideRequestTimer、修改从高处掉落才进入 landing
+	- 限制能量（在 Stats 中仿照 Health 声明）、绘制能量条（仿照 Health 血条）
+
+## 14 交互
+
+<!-- （2024-12-09） -->
+
+- 交互：玩家进入山洞/地图边界，切换场景（使用 Area2D - Interactable 实现）
+- 在编辑器中设置碰撞遮罩 mask layer（是二进制位，可以用内置函数 `set_collision_mask_value` 实现
+- 交互的逻辑没啥可说的，emit 信号（实现的效果是进入后，显示按键动画提示，这里用 animated sprite 实现，因为比较简单）
+- 多 area 交互会有问题，因为任意离开一个都会导致 player 记录的 area 清空，最终使得“明明离开一个，进入另一个，却没有动静”
+	- 解决方案是使用数组，然后进入 area 就“注册”（使用函数实现）
+- 收尾处理：死亡不显示按键提示动画
+
+## 15 以后部分
+
+- [如何切换场景｜Godot 4 教程《勇者传说》#15\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1oe41167pF/)
+	- 注：虽然 4.2 发布了，但是这一期还是用的 4.1.3。请注意从 4.2 开始，`change_scene_to_file()` 之后需要改为 `await tree.tree_changed`，或者改为 `await tree.process_frame` 两次，才能访问到新的场景
+	- 素材设置的**宽度和高度最好为偶数**——否则相机移动会有像素抖动！
+	- 场景多入口/出口的实现：EntryPoint 继承自 Mark2D（基本等同于 Node2D）
+		- 两个出入口点相互传送：MineGate 脚本中引入彼此的 EntryPoint
+		- World 脚本中引入 Player 并编写设置位置的函数
+			- 注：需要禁用相机移动的动画 `camera.reset_smoothing()`
+			- Godot 4.2 版本需要额外添加 `camera.force_update_scroll()`
+		- 场景转换：由于 `change_scene_to_file` 函数延迟一帧，所以在 Game 脚本中编写场景转换的实现
+			- 注意：自动加载是 Game 场景而不是 Game 脚本
+			- EntryPoint 设置加入组中，方便后续查找
+		- EntryPoint 决定玩家的朝向：重构代码，仿照 Enemy 设置 Direction
+			- 转换的时候为玩家方向赋值，赋值根据 EntryPoint 的导出变量
+		- 血量在转换场景时不会保留
+			- 把 Stats 写进 Game 中（也是为什么需要 Game 场景的原因）
+			- 进入的扣血动画取消：ready 时传入 `skip_amim = true`
+	- 结尾彩蛋：创建一个新的场景，教程略，有一些 TileMap 的注意事项可备用
+- [如何实现转场效果｜Godot 4 教程《勇者传说》#16_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1ZN4y1i7d4/)
+	- 问题：转场时，野猪还会从空中降落；开始就把玩家放在地面上，还会经历fall状态（即便在 Player 的 ready 函数中默认开始调用 0.01s 的 stand 函数）
+		- 原因：tilemap 的刷新机制（不会立刻刷新，可能会先等几帧）
+		- 解决：使用 StaticBody 作为玩家初始化的临时落脚点——或者，使用转场！
+	- *转场可以是为了好看，也可以是为了遮丑 :)*
+	- 使用 shader 转场<!--（参考之前迷失岛的 Godot 教程，这部分作略）-->
+	- 误进入 landing 状态：将玩家强行从初始化位置移动到出口位置后，y方向的高度超过了进入landing状态的阈值（参考#13）
+		- 解决：修改 update_player 函数设置 `fall_from_y = pos.y`（参考视频）
+	- 转场时要避免意外情况（比如玩家走动被怪打死，就没法活着 tp 了）
+		- 一种解决办法：设置转场状态，该状态玩家不应该会受到伤害
+		- 这里出于简便，直接用 tree.pause 暂停场景，但动画不停止（参考视频）
+
+<!-- （2024年2月7日：后续内容已经脱节太多，只是简单过一遍，不做细究） -->
+
+- [如何保持场景状态｜Godot 4 教程《勇者传说》#17_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1wi4y1q7vM/)
+	- 存档的基础工作：为 scene 场景脚本编写 `to_dict` 和 `from_dict` 函数
+	- 通过组来获取场景中所有活着的敌人的路径保存，加载时判断是否在数组中
+- [如何保存进度｜Godot 4 教程《勇者传说》#18_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1qQ4y1c7c3/)
+	- 存档与读档：可以参考之前迷失岛 2 教程的相关内容
+	- 通过路径字符串访问 node，保存的数据还包括玩家的朝向和位置
+	- 补充：UI 先于场景加载 -> init 字段，init 函数（匿名函数）
+- [如何实现存档点｜Godot 4 教程《勇者传说》#19_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1pU421Z7iE/)
+	- 存档点：石碑，符文，发光 -> 2D 点光源的引入！
+	- 存档激活的动画效果（动画轨道：三次方，即先加速后减速）
+	- 画面效果：暗角 Vignette，shader，直接从网站获取，通过导出变量修改！
+- [编辑器升级｜Godot 4 教程《勇者传说》番外_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1tt421p72X/)
+	- 4.2 的部分语句调整；官方升级的 Reset 插件平替；对连续轨道的修复脚本
+	- 视频里用到的更新模式修复脚本： https://github.com/timothyqiu/godot-2d-adventure-tutorial/blob/master/fix_animations.gd
+- [如何制作标题界面｜Godot 4 教程《勇者传说》#20_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1TC411677T/)
+	- 窗口拉伸的 extend 模式（结合 TextureRect 居中锚点，设置图案始终中的效果）
+	- shader 效果的 ColorRect 会影响鼠标点击 Button，需要设置 mouse 为 ignore
+	- Button 的 focus 主要是为键盘操作适配的，需要使用脚本使得一开始就 focus
+		- `button.grab_focus()`：使得游戏一开始就 focus 其中一个按钮（键盘）
+		- 【弹幕】可以将 hover 的样式做成 focus 的样式，更简单，不用脚本
+	- button点击交互的逻辑（进入游戏、加载游戏、返回主界面等）
+
+<!-- （新内容：从2/23开始的，3/13开始补充记录） -->
+
+- [如何制作结束界面｜Godot 4 教程《勇者传说》#21_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1PH4y1774E/)
+	- 输入事件处理逻辑：![](./input-process.png)
+	- `xxx = Input.abc()` 是主动查询，调用函数是被动的，后者可以被屏蔽
+	- 回显事件：如按住 <kbd>D</kbd>，OS 只检测到第一个 <kbd>D</kbd>，后面的输入是 OS 自动补充的
+	- 屏蔽事件的处理（这里略过这部分）
+	- 关于lebel等字符逐步显示的设置（通过 Label 的属性/脚本）
+- [如何设置音乐和音效｜Godot 4 教程《勇者传说》#22\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV14r421p7vN/)
+	- 播放的逻辑，之前的教程里面已经讲过了
+	- 写一个全局 Node：SoundManager（自动加载）
+	- 注意导入音频的循环问题！（场景选单旁还有导入选单）
+	- 下方的音频控制台（总线 bus）
+	- 设置音量：AudioServer
+- [如何制作音量滑块｜Godot 4 教程《勇者传说》#23\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1cz421X7Ya/)
+	- 音量的线性化转换（db_to_linear）
+	- ini 文件（这个好用，直接替代 json 用作参数文件）
+	- HSlider 控件（也有九宫格属性等）
+- [如何制作暂停界面｜Godot 4 教程《勇者传说》#24\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Dy421i78L/)
+	- 结合上一讲的 UI 控件，设置暂停/设置界面的设计
+	- 除了声音的设置以外，没有什么太特殊的内容，都是已经知道的
+	- （好像没看完，内容作略，后面需要再观看）
+
+<!-- （补完：4/28汇总剩余所有，简要记录，完结撒花） -->
+
+- [如何适配手柄｜Godot 4 教程《勇者传说》#25\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1mH4y1p7Mu/)
+	- 播放不同的提示键动画（取消自动播放，获取当前连接的设备，判断选择）
+	- 存在键盘鼠标手柄都连接的情况，根据上一次输入选择对应的动画
+	- 避免鼠标/手柄摇杆的轻微误触，可以设计「死区」<!--（想到了 test-node 项目）-->
+	- 针对不同品牌的手柄进行判断，进行不同的操作（可允许玩家取消自动判断）
+	- 菜单：手柄震动设置（需要记录最近使用设备，避免键鼠操作手柄震）
+- [如何制作虚拟摇杆｜Godot 4 教程《勇者传说》#26\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV16A4m1A7gA/)
+	- 为手机移动设备？TouchScreenButton
+		- 测试：用鼠标模拟触摸
+		- 左方向键的设计（这部分涉及到相对坐标和相对鼠标居中，原理作略）
+		- 暂停按键的设计
+		- 在不同设备上自动判断是否显示虚拟摇杆（Godot自行实现）
+			- 如网页，手机端提供虚拟摇杆，但电脑端就不需要停供
+- [如何实现震屏和顿帧｜Godot 4 教程《勇者传说》#27\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1tH4y1H79x/)
+	- 震屏：camera 随机移动一定幅度时间（具体细节略）
+	- 顿帧：打击的一瞬间时间变慢，开始短暂计时，然后恢复成原速度
+- [[完结]如何导出游戏｜Godot 4 教程《勇者传说》#28\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1RM4m197RY/)
+	- 需要先安装导出模板，然后配置 credit 路径
+	- Android 平台需要给出 sdk 路径和调试密钥库（安卓开发基本知识）
+	- （还有一些注意事项需要时再查看，这里不再细究）

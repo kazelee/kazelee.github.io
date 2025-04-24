@@ -5,7 +5,7 @@ description: "从一些点击解谜游戏的关卡入手，对开关问题算法
 image: "./cover.jpg"
 tags: ["算法", "游戏"]
 category: 算法研究
-draft: false
+draft: true
 ---
 
 在游戏《逃离方块：洞穴》中，有一个这样的谜题，如下图[^1]所示：

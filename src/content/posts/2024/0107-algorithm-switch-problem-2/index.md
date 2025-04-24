@@ -4,7 +4,7 @@ published: 2024-01-07
 description: "对部分点击解谜游戏中的开关问题，做进一步补充说明。"
 tags: ["算法", "游戏"]
 category: 算法研究
-draft: false
+draft: true
 ---
 
 开关问题前篇：[开关问题算法与游戏中的例子](../../2023/1108-algorithm-switch-problem/)
